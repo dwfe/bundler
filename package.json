@@ -1,0 +1,38 @@
+{
+  "name": "@do-while-for-each/bundler",
+  "description": "Tools for bundle of JS/TS sources",
+  "version": "1.0.0",
+  "homepage": "",
+  "bugs": "",
+  "keywords": [
+    "bundle",
+    "bundler",
+    "webpack"
+  ],
+  "author": "Do|While|For|Each",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:dwfe/bundler.git"
+  },
+  "bin": {
+    "dwfe_bundler": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p src/tsconfig.json"
+  },
+  "dependencies": {
+
+  },
+  "devDependencies": {
+    "typescript": "4.x"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
