@@ -1,5 +1,6 @@
 import {existsSync} from 'fs';
 import {join} from 'path';
+import {logErr} from './log';
 
 //region File paths
 
@@ -21,8 +22,10 @@ export const PKG = require(PKG_FILE);
 export const OPTIONS_MAP = PKG[optionsMapFieldName];
 export const OVERRIDE_CONFIG = existsSync(OVERRIDE_CONFIG_FILE) ? require(OVERRIDE_CONFIG_FILE) : null;
 
-if (!OPTIONS_MAP || !Object.keys(OPTIONS_MAP).length)
-  throw new Error(`To run the bundler, specify an object with options in field "${optionsMapFieldName}" of the file package.json`);
+if (!OPTIONS_MAP || !Object.keys(OPTIONS_MAP).length) {
+  logErr('Bundler:', `To run the bundler, specify an object with options in field "${optionsMapFieldName}" of the file package.json`);
+  throw '';
+}
 
 //endregion
 

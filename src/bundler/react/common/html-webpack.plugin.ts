@@ -2,14 +2,17 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import {WebpackPluginInstance} from 'webpack';
 import {messageRunOptionErr} from '../../../util/common';
 import {runModeInfo} from '../../../util/env';
+import {logErr} from '../../../util/log';
 
 /**
  * HTML Webpack Plugin.
  *  https://github.com/jantimon/html-webpack-plugin#readme
  */
 export const htmlWebpackPlugin = (templatePath?: string): WebpackPluginInstance => {
-  if (!templatePath)
-    throw new Error(messageRunOptionErr('templatePath', templatePath, 'non empty string'));
+  if (!templatePath) {
+    logErr('Bundler:', messageRunOptionErr('templatePath', templatePath, 'non empty string'));
+    throw '';
+  }
   return new HtmlWebpackPlugin({
     inject: 'head',
     scriptLoading: 'defer',

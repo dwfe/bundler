@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import fs from 'fs';
 import {DOTENV_FILE} from './params';
 import {TRunMode} from '../types';
+import {logErr} from './log';
 
 export const runModeInfo = () => {
   const NODE_ENV = process.env.NODE_ENV;
@@ -54,8 +55,10 @@ export function prepareEnv(nodeEnv: TRunMode) {
 }
 
 export function getEnv(): NodeJS.ProcessEnv {
-  if (!runModeInfo().NODE_ENV)
-    throw new Error('The NODE_ENV environment variable is required but was not specified.');
+  if (!runModeInfo().NODE_ENV) {
+    logErr('Bundler:', 'The NODE_ENV environment variable is required but was not specified.');
+    throw '';
+  }
   return {...process.env};
 }
 

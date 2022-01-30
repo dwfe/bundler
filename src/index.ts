@@ -15,13 +15,15 @@ const bundlers: { [key in TBundler]: (opt: IOptions) => void } = {
 const [arg1] = ARGS;
 const runOpt = OPTIONS_MAP[arg1] as IRunOptions;
 if (!runOpt) {
-  logErr('bundler', `Can't find options for key "${arg1}"`);
-  throw new Error();
+  logErr('Bundler:', `Can't find options for key "${arg1}"`);
+  throw '';
 }
 
 const bundler = bundlers[runOpt.bundler];
-if (!bundler)
-  throw new Error(messageRunOptionErr('bundler', runOpt.bundler, ALL_BUNDLERS.map(b => `"${b}"`).join(', ')));
+if (!bundler) {
+  logErr('Bundler:', messageRunOptionErr('bundler', runOpt.bundler, ALL_BUNDLERS.map(b => `"${b}"`).join(', ')));
+  throw '';
+}
 
 const opt = normalizeOptions(runOpt);
 
