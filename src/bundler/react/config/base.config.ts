@@ -1,11 +1,16 @@
-import { Configuration, DefinePlugin } from 'webpack';
-import { assetLoader, htmlWebpackPlugin, styleLoaders, tscriptLoader } from '../common';
+import {Configuration, DefinePlugin} from 'webpack';
+import merge from 'webpack-merge';
+import {assetLoader, htmlWebpackPlugin, styleLoaders, tscriptLoader} from '../common';
+import {OVERRIDE_CONFIG, OVERRIDE_CONFIG_FILE} from '@util/params'
 import {stringifiedProcessEnv} from '@util/env';
 import {IOptions} from '../../contract';
+import {logAction} from '@util/log'
 
-export const getBaseConfig = (opt: IOptions): Configuration=> {
+export const getBaseConfig = (opt: IOptions): Configuration => {
   const {entry, templatePath} = opt;
-  return {
+  if (OVERRIDE_CONFIG)
+    logAction(`use config override from ${OVERRIDE_CONFIG_FILE}`);
+  return merge({
     target: 'web',
     entry,
     resolve: {
@@ -19,7 +24,7 @@ export const getBaseConfig = (opt: IOptions): Configuration=> {
             ...styleLoaders(),
             assetLoader(/\.(png|gif|jpg|jpeg)$/),
             assetLoader(/\.svg$/, 'asset/source'),
-            assetLoader(/\.(woff|woff2|eot|ttf)$/, "asset/resource")
+            assetLoader(/\.(woff|woff2|eot|ttf)$/, 'asset/resource')
           ]
         }
       ]
@@ -28,5 +33,5 @@ export const getBaseConfig = (opt: IOptions): Configuration=> {
       new DefinePlugin(stringifiedProcessEnv()),
       htmlWebpackPlugin(templatePath)
     ]
-  } as Configuration;
+  } as Configuration, OVERRIDE_CONFIG || {});
 };

@@ -4,10 +4,11 @@ import {runModeInfo} from '@util/env';
 import {IOptions} from '../contract';
 
 export const reactBundler = (opt: IOptions): void => {
-  const {isProduction} = runModeInfo();
-  if (isProduction) {
-    runProductionBundler(opt);
-    return;
+  switch (runModeInfo().NODE_ENV) {
+    case 'production':
+      runProductionBundler(opt);
+      break;
+    default:
+      runDevelopmentBundler(opt);
   }
-  runDevelopmentBundler(opt);
 }

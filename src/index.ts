@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import {ALL_BUNDLERS, IOptions, IRunOptions, TBundler} from './bundler/contract';
-import {ARGS, findArg, POSSIBLE_OPTIONS} from '@util/params';
+import {ARGS, findArg, OPTIONS_MAP} from '@util/params';
 import {reactBundler} from './bundler/react/react.bundler';
 import {normalizeOptions} from '@util/options.normalizer';
 import {messageRunOptionErr} from '@util/common';
@@ -12,12 +12,12 @@ const bundlers: { [key in TBundler]: (opt: IOptions) => void } = {
 }
 
 const [arg1] = ARGS;
-const runOptions = POSSIBLE_OPTIONS[arg1] as IRunOptions;
-const bundler = bundlers[runOptions.bundler];
+const runOpt = OPTIONS_MAP[arg1] as IRunOptions;
+const bundler = bundlers[runOpt.bundler];
 if (!bundler)
-  throw new Error(messageRunOptionErr('bundler', runOptions.bundler, ALL_BUNDLERS.map(b => `"${b}"`).join(', ')));
+  throw new Error(messageRunOptionErr('bundler', runOpt.bundler, ALL_BUNDLERS.map(b => `"${b}"`).join(', ')));
 
-const opt = normalizeOptions(runOptions);
+const opt = normalizeOptions(runOpt);
 
 if (findArg('--prod'))
   prepareEnv('production');

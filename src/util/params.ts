@@ -1,3 +1,4 @@
+import {existsSync} from 'fs';
 import {join} from 'path';
 
 //region File paths
@@ -7,6 +8,7 @@ export const SRC_DIR = relativeToBase('src');
 export const DIST_DIR = relativeToBase('dist');
 export const PKG_FILE = relativeToBase('package.json');
 export const DOTENV_FILE = relativeToBase('.env');
+export const OVERRIDE_CONFIG_FILE = relativeToBase('webpack.config.js');
 
 //endregion
 
@@ -14,7 +16,8 @@ export const DOTENV_FILE = relativeToBase('.env');
 //region Objects
 
 export const PKG = require(PKG_FILE);
-export const POSSIBLE_OPTIONS = PKG.dwfeBundlerOptions;
+export const OPTIONS_MAP = PKG.dwfeBundlerOptions;
+export const OVERRIDE_CONFIG = existsSync(OVERRIDE_CONFIG_FILE) ? require(OVERRIDE_CONFIG_FILE) : null;
 
 //endregion
 
