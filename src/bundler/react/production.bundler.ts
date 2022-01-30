@@ -25,13 +25,10 @@ export function runProductionBundler(opt: IOptions): void {
     if (err || stats?.hasErrors()) {
       logErr('Bundle error:', err?.toString() || 'none');
       logErr('Webpack stats error:', message);
-      return;
-    }
-    if (stats?.hasWarnings()) {
+    } else if (stats?.hasWarnings()) {
       logWarn('Webpack stats warning:', message);
-      return;
-    }
-    logSuccess('', message);
+    } else
+      logSuccess('', message);
   });
 
 }
