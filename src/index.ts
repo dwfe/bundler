@@ -13,6 +13,9 @@ const bundlers: { [key in TBundler]: (opt: IOptions) => void } = {
 
 const [arg1] = ARGS;
 const runOpt = OPTIONS_MAP[arg1] as IRunOptions;
+if (!runOpt)
+  throw new Error(`Can't find options for key "${arg1}"`);
+
 const bundler = bundlers[runOpt.bundler];
 if (!bundler)
   throw new Error(messageRunOptionErr('bundler', runOpt.bundler, ALL_BUNDLERS.map(b => `"${b}"`).join(', ')));
