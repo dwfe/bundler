@@ -29,13 +29,13 @@ export function logBundlerErr(...message: string[]): void {
 interface ILog {
   type: 'error' | 'warning' | 'success' | 'action';
   title?: string;
-  message?: string[] | string;
+  message?: string[] | any;
   asLine?: boolean;
 }
 
 export function log({type, title, message, asLine}: ILog): void {
   if (message)
-    message = typeof message === 'string' ? [message] : message;
+    message = Array.isArray(message) ? message : [message];
   switch (type) {
     case 'error':
       title = title && chalk.black.bgRed(title);
@@ -59,7 +59,7 @@ export function log({type, title, message, asLine}: ILog): void {
   }
   if (asLine) {
     if (title)
-      console.log(title, message);
+      console.log(title, message || '');
     else if (message)
       console.log(message);
   } else {

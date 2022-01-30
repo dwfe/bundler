@@ -44,6 +44,10 @@ export function relativeToBase(...paths: string[]): string {
   return join(BASE_DIR, ...paths)
 }
 
+export function excludeBase(value: string): string {
+  return value.replace(BASE_DIR, '');
+}
+
 export function findArg(value: string): boolean {
   const regexp = new RegExp(value);
   return ARGS.filter(a => regexp.test(a)).length > 0;

@@ -1,7 +1,8 @@
 import {copyFileSync, existsSync, lstatSync, mkdirSync, readdirSync, rmSync} from 'fs';
 import {join} from 'path';
 import {IOptions, IRunOptions} from '../bundler/contract';
-import {logAction, logBundlerErr, logOption} from './log'
+import {logAction, logBundlerErr, logOption} from './log';
+import {excludeBase} from './params'
 
 export const messageRunOptionErr = (optionField: keyof IRunOptions, value: any, expected: any): string =>
   `Incorrect "${optionField}" option field value: "${value}". Possible value(s): ${expected}`;
@@ -65,22 +66,30 @@ function isDirectory(file: string): boolean {
 export function printOptions(opt: IOptions): void {
   const result: { [key: number]: [keyof IOptions, string] } = {};
 
-  for (const [option, value] of Object.entries(opt)) {
+  for (let [option, value] of Object.entries(opt)) {
     switch (option as keyof IOptions) {
       case 'entry':
-        result[1] = ['entry', JSON.stringify(value)];
+        const value2 = Object
+          .entries<string>(value)
+          .reduce<{ [key in string]: string }>((acc, [k, v]) => {
+            acc[k] = excludeBase(v);
+            return acc;
+          }, {});
+        result[1] = ['entry', JSON.stringify(value2)];
         break;
       case 'outputPath':
-        result[2] = ['outputPath', value];
+        result[2] = ['outputPath', excludeBase(value)];
         break;
       case 'outputFilename':
         result[3] = ['outputFilename', value];
         break;
       case 'assetPath':
-        result[4] = ['assetPath', value];
+        value = value || 'unset';
+        result[4] = ['assetPath', excludeBase(value)];
         break;
       case 'templatePath':
-        result[5] = ['templatePath', value];
+        value = value || 'unset';
+        result[5] = ['templatePath', excludeBase(value)];
         break;
       case 'svgLoaderType':
         result[6] = ['svgLoaderType', value];
