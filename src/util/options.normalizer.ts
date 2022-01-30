@@ -1,5 +1,6 @@
 import {IOptions, IRunOptions} from '../bundler/contract';
 import {DIST_DIR, relativeToBase} from '@util/params';
+import {optionErrMessage} from '@util/common';
 
 /**
  * We must ensure that:
@@ -11,7 +12,7 @@ export const normalizeOptions = (runOptions: IRunOptions): IOptions => {
   const {entryPoint, outputPath, outputFilename, assetPath, templatePath, host, port, publicPath} = runOptions;
 
   if (!entryPoint)
-    throw new Error(`Incorrect "entryPoint" option field: "${entryPoint}"`);
+    throw new Error(optionErrMessage('entryPoint', entryPoint, 'non empty string'));
   const entry = {
     main: relativeToBase(entryPoint)
   }

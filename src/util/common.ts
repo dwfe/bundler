@@ -1,6 +1,10 @@
 import {copyFileSync, existsSync, lstatSync, mkdirSync, readdirSync, rmSync} from 'fs';
 import {join} from 'path';
 
+export function optionErrMessage(field: string, value: any, expected: any): string {
+  return `[BUNDLER]. Incorrect "${field}" option field value(s): "${value}". Possible values: ${expected}`;
+}
+
 export function onProcessExit(callback: () => void): void {
   ['SIGINT', 'SIGTERM'].forEach(signal => {
     process.on(signal, () => {
