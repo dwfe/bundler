@@ -1,6 +1,6 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import {WebpackPluginInstance} from 'webpack';
-import {optionErrMessage} from '@util/common';
+import {messageRunOptionErr} from '@util/common';
 import {runModeInfo} from '@util/env';
 
 /**
@@ -9,7 +9,7 @@ import {runModeInfo} from '@util/env';
  */
 export const htmlWebpackPlugin = (templatePath?: string): WebpackPluginInstance => {
   if (!templatePath)
-    throw new Error(optionErrMessage('templatePath', templatePath, 'non empty string'));
+    throw new Error(messageRunOptionErr('templatePath', templatePath, 'non empty string'));
   return new HtmlWebpackPlugin({
     inject: 'head',
     scriptLoading: 'defer',

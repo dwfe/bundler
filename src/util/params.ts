@@ -29,7 +29,7 @@ export const ARGS = args;
 
 //region Support
 
-export function relativeToBase(...paths: string[]) {
+export function relativeToBase(...paths: string[]): string {
   return join(BASE_DIR, ...paths)
 }
 
