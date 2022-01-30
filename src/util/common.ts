@@ -2,9 +2,13 @@ import {copyFileSync, existsSync, lstatSync, mkdirSync, readdirSync, rmSync} fro
 import {join} from 'path';
 import {IRunOptions} from '../bundler/contract';
 
-export function messageRunOptionErr(optionField: keyof IRunOptions, value: any, expected: any): string {
-  return `Incorrect "${optionField}" option field value: "${value}". Possible value(s): ${expected}`;
-}
+export const messageRunOptionErr = (optionField: keyof IRunOptions, value: any, expected: any): string =>
+  `Incorrect "${optionField}" option field value: "${value}". Possible value(s): ${expected}`;
+
+/**
+ * ['hello', 'world', 123] => '"hello", "world", "123"'
+ */
+export const arrToStr = (arr: string[]): string => arr.map(x => `"${x}"`).join(', ');
 
 export function onProcessExit(callback: () => void): void {
   ['SIGINT', 'SIGTERM'].forEach(signal => {

@@ -1,6 +1,6 @@
 import {existsSync} from 'fs';
 import {join} from 'path';
-import {logErr} from './log';
+import {logBundlerErr} from './log';
 
 //region File paths
 
@@ -16,14 +16,14 @@ export const OVERRIDE_CONFIG_FILE = relativeToBase('webpack.config.js');
 
 //region Objects/Modules
 
-const optionsMapFieldName = 'dwfeBundlerOptions';
+export const OPTIONS_MAP_FIELD_NAME = 'dwfeBundlerOptions';
 
 export const PKG = require(PKG_FILE);
-export const OPTIONS_MAP = PKG[optionsMapFieldName];
+export const OPTIONS_MAP = PKG[OPTIONS_MAP_FIELD_NAME];
 export const OVERRIDE_CONFIG = existsSync(OVERRIDE_CONFIG_FILE) ? require(OVERRIDE_CONFIG_FILE) : null;
 
 if (!OPTIONS_MAP || !Object.keys(OPTIONS_MAP).length) {
-  logErr('Bundler:', `To run the bundler, specify an object with options in field "${optionsMapFieldName}" of the file package.json`);
+  logBundlerErr(`To run the bundler, specify an object with options in field "${OPTIONS_MAP_FIELD_NAME}" of the file package.json`);
   throw '';
 }
 

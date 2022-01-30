@@ -17,6 +17,11 @@ export function logAction(...args: string[]): void {
 }
 
 
+export function logBundlerErr(...message: string[]): void {
+  logErr('Bundler:', ...message);
+}
+
+
 interface ILog {
   type: 'error' | 'warning' | 'success';
   title?: string;
@@ -40,6 +45,8 @@ export function log({title, message, type}: ILog): void {
         console.log(chalk.black.bgGreen(title));
       console.log(chalk.green(...message));
       break;
+    default:
+      throw new Error(`Unknown message type "${type}"`);
   }
+  console.log(); // empty line after message
 }
-

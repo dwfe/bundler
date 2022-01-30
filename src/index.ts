@@ -1,27 +1,27 @@
 #!/usr/bin/env node
 
-import {ALL_BUNDLERS, IOptions, IRunOptions, TBundler} from './bundler/contract';
+import {ARGS, findArg, OPTIONS_MAP, OPTIONS_MAP_FIELD_NAME} from './util/params';
+import {ALL_BUNDLERS, IRunOptions, TPossibleBundlers} from './bundler/contract';
+import {arrToStr, messageRunOptionErr} from './util/common';
 import {reactBundler} from './bundler/react/react.bundler';
 import {normalizeOptions} from './util/options.normalizer';
-import {ARGS, findArg, OPTIONS_MAP} from './util/params';
-import {messageRunOptionErr} from './util/common';
+import {logBundlerErr} from './util/log';
 import {prepareEnv} from './util/env';
-import {logErr} from './util/log';
 
-const bundlers: { [key in TBundler]: (opt: IOptions) => void } = {
+const bundlers: TPossibleBundlers = {
   react: reactBundler
 }
 
 const [arg1] = ARGS;
 const runOpt = OPTIONS_MAP[arg1] as IRunOptions;
 if (!runOpt) {
-  logErr('Bundler:', `Can't find options for key "${arg1}"`);
+  logBundlerErr(`Can't find options for key "${arg1}". Check it in package.json -> field "${OPTIONS_MAP_FIELD_NAME}"`);
   throw '';
 }
 
 const bundler = bundlers[runOpt.bundler];
 if (!bundler) {
-  logErr('Bundler:', messageRunOptionErr('bundler', runOpt.bundler, ALL_BUNDLERS.map(b => `"${b}"`).join(', ')));
+  logBundlerErr(messageRunOptionErr('bundler', runOpt.bundler, arrToStr(ALL_BUNDLERS)));
   throw '';
 }
 

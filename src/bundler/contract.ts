@@ -1,8 +1,14 @@
 import {Configuration} from 'webpack';
 
-export const ALL_BUNDLERS = ['react'] as const;
+export const ALL_BUNDLERS = ['react'];
 type BundlerTuple = typeof ALL_BUNDLERS;
 export type TBundler = BundlerTuple[number];
+
+export const ALL_SVG_LOADERS = ['react-component', 'raw'];
+type SvgLoaderTuple = typeof ALL_SVG_LOADERS;
+export type TSvgLoader = SvgLoaderTuple[number];
+
+export type TPossibleBundlers = { [key in TBundler]: (opt: IOptions) => void };
 
 /**
  * Options with which the bundler was launched
@@ -17,6 +23,8 @@ export interface IRunOptions {
 
   assetPath?: string;
   templatePath?: string;
+
+  svgLoaderType?: TSvgLoader;
 
   host?: string;
   port?: number;
@@ -37,6 +45,8 @@ export interface IOptions {
 
   assetPath?: string;
   templatePath?: string;
+
+  svgLoaderType: TSvgLoader;
 
   host: string;
   port: number;

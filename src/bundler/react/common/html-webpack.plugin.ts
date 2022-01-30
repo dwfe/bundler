@@ -1,8 +1,8 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import {WebpackPluginInstance} from 'webpack';
 import {messageRunOptionErr} from '../../../util/common';
+import {logBundlerErr} from '../../../util/log';
 import {runModeInfo} from '../../../util/env';
-import {logErr} from '../../../util/log';
 
 /**
  * HTML Webpack Plugin.
@@ -10,7 +10,7 @@ import {logErr} from '../../../util/log';
  */
 export const htmlWebpackPlugin = (templatePath?: string): WebpackPluginInstance => {
   if (!templatePath) {
-    logErr('Bundler:', messageRunOptionErr('templatePath', templatePath, 'non empty string'));
+    logBundlerErr(messageRunOptionErr('templatePath', templatePath, 'non empty string'));
     throw '';
   }
   return new HtmlWebpackPlugin({
