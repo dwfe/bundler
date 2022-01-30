@@ -2,8 +2,8 @@ import {copyFileSync, existsSync, lstatSync, mkdirSync, readdirSync, rmSync} fro
 import {join} from 'path';
 import {IRunOptions} from '../bundler/contract'
 
-export function messageRunOptionErr(field: keyof IRunOptions, value: any, expected: any): string {
-  return `[BUNDLER]. Incorrect "${field}" option field value: "${value}". Possible value(s): ${expected}`;
+export function messageRunOptionErr(optionField: keyof IRunOptions, value: any, expected: any): string {
+  return `[BUNDLER]. Incorrect "${optionField}" option field value: "${value}". Possible value(s): ${expected}`;
 }
 
 export function onProcessExit(callback: () => void): void {
