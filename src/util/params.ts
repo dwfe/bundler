@@ -14,7 +14,7 @@ export const DOTENV_FILE = relativeToBase('.env');
 //region Objects
 
 export const PKG = require(PKG_FILE);
-export const RUN_OPTIONS_ARRAY = PKG.bundlerRunOptions;
+export const RUN_OPTIONS_ARRAY = PKG.dwfeBundlerOptions;
 
 //endregion
 
