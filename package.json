@@ -25,7 +25,8 @@
   ],
   "scripts": {
     "build": "rimraf ./dist && tsc -p src/tsconfig.json",
-    "deploy": "npm version patch && npm publish"
+    "deploy": "npm version patch && npm publish",
+    "postversion": "git push"
   },
   "devDependencies": {
     "@types/node": "16.11.21",
