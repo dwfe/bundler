@@ -1,8 +1,6 @@
 import {copyFileSync, existsSync, lstatSync, mkdirSync, readdirSync, rmSync} from 'fs';
 import {join} from 'path';
-import {IOptions, IRunOptions} from '../bundler/contract';
-import {logAction, logBundlerErr, logOption} from './log';
-import {excludeBase} from './params'
+import {IRunOptions} from '../bundler/contract';
 
 export const messageRunOptionErr = (optionField: keyof IRunOptions, value: any, expected: any): string =>
   `Incorrect "${optionField}" option field value: "${value}". Possible value(s): ${expected}`;
@@ -60,56 +58,4 @@ export function cleanDir(dir: string): void {
 
 function isDirectory(file: string): boolean {
   return lstatSync(file).isDirectory();
-}
-
-
-export function printOptions(opt: IOptions): void {
-  const result: { [key: number]: [keyof IOptions, string] } = {};
-
-  for (let [option, value] of Object.entries(opt)) {
-    switch (option as keyof IOptions) {
-      case 'entry':
-        const value2 = Object
-          .entries<string>(value)
-          .reduce<{ [key in string]: string }>((acc, [k, v]) => {
-            acc[k] = excludeBase(v);
-            return acc;
-          }, {});
-        result[1] = ['entry', JSON.stringify(value2)];
-        break;
-      case 'outputPath':
-        result[2] = ['outputPath', excludeBase(value)];
-        break;
-      case 'outputFilename':
-        result[3] = ['outputFilename', value];
-        break;
-      case 'assetPath':
-        value = value || 'unset';
-        result[4] = ['assetPath', excludeBase(value)];
-        break;
-      case 'templatePath':
-        value = value || 'unset';
-        result[5] = ['templatePath', excludeBase(value)];
-        break;
-      case 'svgLoaderType':
-        result[6] = ['svgLoaderType', value];
-        break;
-      case 'host':
-        result[7] = ['host', value];
-        break;
-      case 'port':
-        result[8] = ['port', value];
-        break;
-      case 'publicPath':
-        result[9] = ['publicPath', value];
-        break;
-      default:
-        logBundlerErr(`Print unknown option "${option}"`);
-        throw '';
-    }
-  }
-  logAction('Bundler run options:');
-  for (const [, [option, value]] of Object.entries(result))
-    logOption(option, value);
-  console.log(' ');
 }

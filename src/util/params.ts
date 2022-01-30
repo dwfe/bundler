@@ -1,5 +1,5 @@
 import {existsSync} from 'fs';
-import {join} from 'path';
+import {join, sep} from 'path';
 import {logBundlerErr} from './log';
 
 //region File paths
@@ -45,7 +45,10 @@ export function relativeToBase(...paths: string[]): string {
 }
 
 export function excludeBase(value: string): string {
-  return value.replace(BASE_DIR, '');
+  let result = value.replace(BASE_DIR, '');
+  if (result[0] === '/' || result[0] === '\\')
+    result = result.replace(sep, ''); // without lead platform-specific separator
+  return result;
 }
 
 export function findArg(value: string): boolean {
