@@ -24,7 +24,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "tsc -p src/tsconfig.json"
+    "build": "rimraf ./dist && tsc -p src/tsconfig.json"
   },
   "devDependencies": {
     "@types/node": "^16.11.21",

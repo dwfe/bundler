@@ -1,10 +1,9 @@
-import {webpack} from 'webpack';
+import webpack from 'webpack';
 import {logAction, logErr, logSuccess, logWarn} from '@util/log';
 import {getProductionConfig} from './config/config';
 import {cleanDir, copySync} from '@util/common';
 import {IOptions} from '../contract';
 import {prepareEnv} from '@util/env';
-
 
 export function runProductionBundler(opt: IOptions): void {
   const {outputPath, assetPath, templatePath} = opt;

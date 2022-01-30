@@ -1,5 +1,5 @@
 import WebpackDevServer from 'webpack-dev-server';
-import {webpack} from 'webpack';
+import webpack from 'webpack';
 import {getDevServerConfig} from './config/dev.server.config';
 import {getDevelopmentConfig} from './config/config';
 import {onProcessExit} from '@util/common';

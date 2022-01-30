@@ -11,7 +11,7 @@ export const normalizeOptions = (runOptions: IRunOptions): IOptions => {
   const {entryPoint, outputPath, outputFilename, assetPath, templatePath, host, port, publicPath} = runOptions;
 
   if (!entryPoint)
-    throw new Error(`Incorrect "entryPoint" options field: "${entryPoint}"`);
+    throw new Error(`Incorrect "entryPoint" option field: "${entryPoint}"`);
   const entry = {
     main: relativeToBase(entryPoint)
   }

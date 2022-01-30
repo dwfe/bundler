@@ -23,7 +23,6 @@ export const RUN_OPTIONS_ARRAY = PKG.dwfeBundlerOptions;
 
 const [, , ...args] = process.argv;
 export const ARGS = args;
-export const isProduction = args.filter(a => /--prod/.test(a)).length > 0;
 
 //endregion
 
@@ -32,6 +31,11 @@ export const isProduction = args.filter(a => /--prod/.test(a)).length > 0;
 
 export function relativeToBase(...paths: string[]) {
   return join(BASE_DIR, ...paths)
+}
+
+export function findArg(value: string): boolean {
+  const regexp = new RegExp(value);
+  return ARGS.filter(a => regexp.test(a)).length > 0;
 }
 
 //endregion
