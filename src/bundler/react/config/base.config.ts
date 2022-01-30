@@ -1,10 +1,10 @@
 import {Configuration, DefinePlugin} from 'webpack';
 import merge from 'webpack-merge';
 import {assetLoader, htmlWebpackPlugin, styleLoaders, tscriptLoader} from '../common';
-import {OVERRIDE_CONFIG, OVERRIDE_CONFIG_FILE} from '@util/params'
-import {stringifiedProcessEnv} from '@util/env';
+import {OVERRIDE_CONFIG, OVERRIDE_CONFIG_FILE} from '../../../util/params'
+import {stringifiedProcessEnv} from '../../../util/env';
+import {logAction} from '../../../util/log';
 import {IOptions} from '../../contract';
-import {logAction} from '@util/log'
 
 export const getBaseConfig = (opt: IOptions): Configuration => {
   const {entry, templatePath} = opt;

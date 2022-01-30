@@ -1,7 +1,7 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import {RuleSetRule} from 'webpack';
-import {SRC_DIR} from '@util/params';
-import {runModeInfo} from '@util/env';
+import {runModeInfo} from '../../../../util/env';
+import {SRC_DIR} from '../../../../util/params';
 
 type TRule = string | RuleSetRule;
 

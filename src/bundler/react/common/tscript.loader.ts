@@ -1,6 +1,6 @@
 import {RuleSetRule} from 'webpack';
-import {relativeToBase} from '@util/params';
-import {runModeInfo} from '@util/env';
+import {relativeToBase} from '../../../util/params';
+import {runModeInfo} from '../../../util/env';
 
 /**
  * TypeScript loader.

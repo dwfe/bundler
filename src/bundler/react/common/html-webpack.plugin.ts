@@ -1,7 +1,7 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import {WebpackPluginInstance} from 'webpack';
-import {messageRunOptionErr} from '@util/common';
-import {runModeInfo} from '@util/env';
+import {messageRunOptionErr} from '../../../util/common';
+import {runModeInfo} from '../../../util/env';
 
 /**
  * HTML Webpack Plugin.

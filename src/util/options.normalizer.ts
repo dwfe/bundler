@@ -1,6 +1,6 @@
 import {IOptions, IRunOptions} from '../bundler/contract';
-import {DIST_DIR, relativeToBase} from '@util/params';
-import {messageRunOptionErr} from '@util/common';
+import {DIST_DIR, relativeToBase} from './params';
+import {messageRunOptionErr} from './common';
 
 /**
  * We must ensure that:

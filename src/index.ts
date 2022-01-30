@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
 import {ALL_BUNDLERS, IOptions, IRunOptions, TBundler} from './bundler/contract';
-import {ARGS, findArg, OPTIONS_MAP} from '@util/params';
 import {reactBundler} from './bundler/react/react.bundler';
-import {normalizeOptions} from '@util/options.normalizer';
-import {messageRunOptionErr} from '@util/common';
-import {prepareEnv} from '@util/env';
+import {normalizeOptions} from './util/options.normalizer';
+import {ARGS, findArg, OPTIONS_MAP} from './util/params';
+import {messageRunOptionErr} from './util/common';
+import {prepareEnv} from './util/env';
 
 const bundlers: { [key in TBundler]: (opt: IOptions) => void } = {
   react: reactBundler

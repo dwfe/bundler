@@ -1,7 +1,7 @@
 import webpack from 'webpack';
-import {logAction, logErr, logSuccess, logWarn} from '@util/log';
+import {logAction, logErr, logSuccess, logWarn} from '../../util/log';
+import {cleanDir, copySync} from '../../util/common';
 import {getProductionConfig} from './config/config';
-import {cleanDir, copySync} from '@util/common';
 import {IOptions} from '../contract';
 
 export function runProductionBundler(opt: IOptions): void {

@@ -1,7 +1,7 @@
 import dotenvExpand from 'dotenv-expand';
 import dotenv from 'dotenv';
 import fs from 'fs';
-import {DOTENV_FILE} from '@util/params';
+import {DOTENV_FILE} from './params';
 import {TRunMode} from '../types';
 
 export const runModeInfo = () => {
