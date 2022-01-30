@@ -24,8 +24,8 @@ export const normalizeOptions = (
   }
   outputPath = outputPath ? relativeToBase(outputPath) : DIST_DIR;
   outputFilename = outputFilename || 'index.js';
-  assetPath = assetPath ? relativeToBase(assetPath) : undefined;
-  templatePath = templatePath ? relativeToBase(templatePath) : undefined;
+  assetPath = assetPath ? relativeToBase(assetPath) : '';
+  templatePath = templatePath ? relativeToBase(templatePath) : '';
   svgLoaderType = svgLoaderType || 'raw';
   host = host || 'localhost';
   port = port || 3000;

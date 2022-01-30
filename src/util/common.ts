@@ -1,6 +1,7 @@
 import {copyFileSync, existsSync, lstatSync, mkdirSync, readdirSync, rmSync} from 'fs';
 import {join} from 'path';
-import {IRunOptions} from '../bundler/contract';
+import {IOptions, IRunOptions} from '../bundler/contract';
+import {logAction, logBundlerErr, logOption} from './log'
 
 export const messageRunOptionErr = (optionField: keyof IRunOptions, value: any, expected: any): string =>
   `Incorrect "${optionField}" option field value: "${value}". Possible value(s): ${expected}`;
@@ -58,4 +59,48 @@ export function cleanDir(dir: string): void {
 
 function isDirectory(file: string): boolean {
   return lstatSync(file).isDirectory();
+}
+
+
+export function printOptions(opt: IOptions): void {
+  const result: { [key: number]: [keyof IOptions, string] } = {};
+
+  for (const [option, value] of Object.entries(opt)) {
+    switch (option as keyof IOptions) {
+      case 'entry':
+        result[1] = ['entry', JSON.stringify(value)];
+        break;
+      case 'outputPath':
+        result[2] = ['outputPath', value];
+        break;
+      case 'outputFilename':
+        result[3] = ['outputFilename', value];
+        break;
+      case 'assetPath':
+        result[4] = ['assetPath', value];
+        break;
+      case 'templatePath':
+        result[5] = ['templatePath', value];
+        break;
+      case 'svgLoaderType':
+        result[6] = ['svgLoaderType', value];
+        break;
+      case 'host':
+        result[7] = ['host', value];
+        break;
+      case 'port':
+        result[8] = ['port', value];
+        break;
+      case 'publicPath':
+        result[9] = ['publicPath', value];
+        break;
+      default:
+        logBundlerErr(`Print unknown option "${option}"`);
+        throw '';
+    }
+  }
+  logAction('Bundler run options:');
+  for (const [, [option, value]] of Object.entries(result))
+    logOption(option, value);
+  console.log(' ');
 }

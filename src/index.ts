@@ -2,7 +2,7 @@
 
 import {ARGS, findArg, OPTIONS_MAP, OPTIONS_MAP_FIELD_NAME} from './util/params';
 import {ALL_BUNDLERS, IRunOptions, TPossibleBundlers} from './bundler/contract';
-import {arrToStr, messageRunOptionErr} from './util/common';
+import {arrToStr, messageRunOptionErr, printOptions} from './util/common';
 import {reactBundler} from './bundler/react/react.bundler';
 import {normalizeOptions} from './util/options.normalizer';
 import {logBundlerErr} from './util/log';
@@ -26,6 +26,7 @@ if (!bundler) {
 }
 
 const opt = normalizeOptions(runOpt);
+printOptions(opt);
 
 if (findArg('--prod'))
   prepareEnv('production');

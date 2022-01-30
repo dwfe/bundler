@@ -43,8 +43,8 @@ export interface IOptions {
   outputPath: string;
   outputFilename: string;
 
-  assetPath?: string;
-  templatePath?: string;
+  assetPath: string;
+  templatePath: string;
 
   svgLoaderType: TSvgLoader;
 

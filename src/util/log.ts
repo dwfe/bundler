@@ -12,8 +12,12 @@ export function logSuccess(title: string, ...message: string[]): void {
   log({type: 'success', title, message});
 }
 
-export function logAction(...args: string[]): void {
-  console.log(chalk.black.bgCyan(...args));
+export function logAction(title: string): void {
+  log({type: 'action', title, asLine: true});
+}
+
+export function logOption(option: string, value: string): void {
+  log({type: 'success', title: option, message: value, asLine: true});
 }
 
 
@@ -23,30 +27,46 @@ export function logBundlerErr(...message: string[]): void {
 
 
 interface ILog {
-  type: 'error' | 'warning' | 'success';
+  type: 'error' | 'warning' | 'success' | 'action';
   title?: string;
-  message: string[];
+  message?: string[] | string;
+  asLine?: boolean;
 }
 
-export function log({title, message, type}: ILog): void {
+export function log({type, title, message, asLine}: ILog): void {
+  if (message)
+    message = typeof message === 'string' ? [message] : message;
   switch (type) {
     case 'error':
-      if (title)
-        console.log(chalk.black.bgRed(title));
-      console.log(chalk.red(...message));
+      title = title && chalk.black.bgRed(title);
+      message = message && chalk.red(...message);
       break;
     case 'warning':
-      if (title)
-        console.log(chalk.black.bgYellow(title));
-      console.log(chalk.black(...message));
+      title = title && chalk.black.bgYellow(title);
+      message = message && chalk.black(...message);
       break;
     case 'success':
-      if (title)
-        console.log(chalk.black.bgGreen(title));
-      console.log(chalk.green(...message));
+      title = title && chalk.black.bgGreen(title);
+      message = message && chalk.green(...message);
+      break;
+    case 'action':
+      title = title && chalk.black.bgCyan(title);
+      message = message && chalk.black(...message);
       break;
     default:
-      throw new Error(`Unknown message type "${type}"`);
+      logBundlerErr(`Unknown message type "${type}"`);
+      throw '';
   }
-  console.log(); // empty line after message
+  if (asLine) {
+    if (title)
+      console.log(title, message);
+    else if (message)
+      console.log(message);
+  } else {
+    if (title)
+      console.log(title);
+    if (message)
+      console.log(message);
+    console.log(' '); // empty line after message
+  }
 }
