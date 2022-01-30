@@ -6,6 +6,7 @@ import {normalizeOptions} from './util/options.normalizer';
 import {ARGS, findArg, OPTIONS_MAP} from './util/params';
 import {messageRunOptionErr} from './util/common';
 import {prepareEnv} from './util/env';
+import {logErr} from './util/log';
 
 const bundlers: { [key in TBundler]: (opt: IOptions) => void } = {
   react: reactBundler
@@ -13,8 +14,10 @@ const bundlers: { [key in TBundler]: (opt: IOptions) => void } = {
 
 const [arg1] = ARGS;
 const runOpt = OPTIONS_MAP[arg1] as IRunOptions;
-if (!runOpt)
-  throw new Error(`Can't find options for key "${arg1}"`);
+if (!runOpt) {
+  logErr('bundler', `Can't find options for key "${arg1}"`);
+  throw new Error();
+}
 
 const bundler = bundlers[runOpt.bundler];
 if (!bundler)
