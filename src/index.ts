@@ -2,7 +2,7 @@
 
 import {ARGS, findArg, OPTIONS_MAP, OPTIONS_MAP_FIELD_NAME} from './util/params';
 import {ALL_BUNDLERS, IRunOptions, TPossibleBundlers} from './bundler/contract';
-import {normalizeOptions, printOptions} from './util/options.normalizer';
+import {normalizeOptions, printOptions} from './util/options';
 import {arrToStr, messageRunOptionErr} from './util/common';
 import {reactBundler} from './bundler/react/react.bundler';
 import {logAction, logBundlerErr} from './util/log';
