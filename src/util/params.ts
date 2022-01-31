@@ -46,8 +46,10 @@ export function relativeToBase(...paths: string[]): string {
 
 export function excludeBase(value: string): string {
   let result = value.replace(BASE_DIR, '');
-  if (result[0] === '/' || result[0] === '\\')
-    result = result.replace(sep, ''); // without lead platform-specific separator
+  if (sep === '\\')
+    result = result.replaceAll(sep, '/'); // display as unix file path separator
+  if (result[0] === '/')
+    result = result.replace(sep, ''); // without lead separator
   return result;
 }
 
