@@ -12,7 +12,7 @@ export function logSuccess(title: string, ...message: string[]): void {
   log({type: 'success', title, message});
 }
 
-export function logAction(title: string, asLine = false): void {
+export function logAction(title: string, asLine = true): void {
   log({type: 'action', title, asLine});
 }
 
