@@ -93,7 +93,7 @@ export function printOptions(opt: IOptions): void {
         throw '';
     }
   }
-  logAction('Bundler run options:');
+  logAction('Bundler options:');
   for (const [, [option, value]] of Object.entries(result))
     logOption(option, value);
   console.log(' ');

@@ -27,5 +27,5 @@ export function runProductionBundler(opt: IOptions): void {
       logSuccess('', message);
   });
 
-  logAction('Creating an optimized production build...');
+  logAction('Creating an optimized production build...', false);
 }
