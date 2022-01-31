@@ -45,11 +45,13 @@ export function relativeToBase(...paths: string[]): string {
 }
 
 export function excludeBase(value: string): string {
+  const unixSeparator = '/';
+  const winSeparator = '\\';
   let result = value.replace(BASE_DIR, '');
-  if (sep === '\\')
-    result = result.replaceAll(sep, '/'); // display as unix file path separator
-  if (result[0] === '/')
-    result = result.replace(sep, ''); // without lead separator
+  if (sep === winSeparator)
+    result = result.replaceAll(winSeparator, unixSeparator);
+  if (result[0] === unixSeparator)
+    result = result.replace(unixSeparator, ''); // without lead separator
   return result;
 }
 
