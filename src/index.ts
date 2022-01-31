@@ -26,7 +26,8 @@ if (!bundler) {
 }
 
 const opt = normalizeOptions(runOpt);
-printOptions(opt);
+if (runOpt.printOptions)
+  printOptions(opt);
 
 if (findArg('--prod'))
   prepareEnv('production');

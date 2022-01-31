@@ -7,7 +7,7 @@ import {IOptions} from '../contract';
 export function runProductionBundler(opt: IOptions): void {
   const {outputPath, assetPath, templatePath} = opt;
 
-  logAction('Preparing the output directory...');
+  logAction('Preparing the output directory...', false);
   cleanDir(outputPath);
   if (assetPath) {
     const allowedToCopyFilter = templatePath
@@ -16,7 +16,6 @@ export function runProductionBundler(opt: IOptions): void {
     copySync(assetPath, outputPath, allowedToCopyFilter);
   }
 
-  logAction('Creating an optimized production build...');
   webpack(getProductionConfig(opt), (err, stats) => {
     const message = stats?.toString() || 'none';
     if (err || stats?.hasErrors()) {
@@ -28,4 +27,5 @@ export function runProductionBundler(opt: IOptions): void {
       logSuccess('', message);
   });
 
+  logAction('Creating an optimized production build...');
 }

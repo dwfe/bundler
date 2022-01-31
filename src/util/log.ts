@@ -12,8 +12,8 @@ export function logSuccess(title: string, ...message: string[]): void {
   log({type: 'success', title, message});
 }
 
-export function logAction(title: string): void {
-  log({type: 'action', title, asLine: true});
+export function logAction(title: string, asLine = false): void {
+  log({type: 'action', title, asLine});
 }
 
 export function logOption(option: string, value: string): void {

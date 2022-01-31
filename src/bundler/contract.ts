@@ -31,6 +31,8 @@ export interface IRunOptions {
 
   publicPath?: string; // https://webpack.js.org/configuration/output/#outputpublicpath
 
+  printOptions?: boolean;
+
 }
 
 
