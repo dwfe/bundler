@@ -19,12 +19,6 @@ if (!runOpt) {
   throw '';
 }
 
-const bundler = bundlers[runOpt.bundler];
-if (!bundler) {
-  logBundlerErr(messageRunOptionErr('bundler', runOpt.bundler, arrToStr(ALL_BUNDLERS)));
-  throw '';
-}
-
 const opt = normalizeOptions(runOpt);
 if (runOpt.printOptions)
   printOptions(opt);
@@ -36,5 +30,10 @@ else if (findArg('--test'))
 else
   prepareEnv('development');
 
+const bundler = bundlers[runOpt.bundler];
+if (!bundler) {
+  logBundlerErr(messageRunOptionErr('bundler', runOpt.bundler, arrToStr(ALL_BUNDLERS)));
+  throw '';
+}
 logAction(`Start bundler "${runOpt.bundler}", ${runModeInfo().NODE_ENV}`, false);
 bundler(opt);
