@@ -8,10 +8,6 @@ import {reactBundler} from './bundler/react/react.bundler';
 import {logAction, logBundlerErr} from './util/log';
 import {prepareEnv, runModeInfo} from './util/env';
 
-const bundlers: TPossibleBundlers = {
-  react: reactBundler
-}
-
 const [arg1] = ARGS;
 const runOpt = OPTIONS_MAP[arg1] as IRunOptions;
 if (!runOpt) {
@@ -30,9 +26,12 @@ else if (findArg('--test'))
 else
   prepareEnv('development');
 
+const bundlers: TPossibleBundlers = {
+  react: reactBundler
+};
 const bundler = bundlers[runOpt.bundler];
 if (!bundler) {
-  logBundlerErr(messageRunOptionErr('bundler', runOpt.bundler, arrToStr(ALL_BUNDLERS)));
+  logBundlerErr(messageRunOptionErr('bundler', runOpt.bundler, arrToStr(ALL_BUNDLERS as unknown as Array<string>)));
   throw '';
 }
 logAction(`Start bundler "${runOpt.bundler}", ${runModeInfo().NODE_ENV}`, false);

@@ -1,5 +1,5 @@
-import {existsSync} from 'fs';
 import {join, sep} from 'path';
+import {existsSync} from 'fs';
 import {logBundlerErr} from './log';
 
 //region File paths
@@ -7,8 +7,8 @@ import {logBundlerErr} from './log';
 export const BASE_DIR = process.cwd();
 export const SRC_DIR = relativeToBase('src');
 export const DIST_DIR = relativeToBase('dist');
-export const PKG_FILE = relativeToBase('package.json');
 export const DOTENV_FILE = relativeToBase('.env');
+export const PKG_FILE = relativeToBase('package.json');
 export const OVERRIDE_CONFIG_FILE = relativeToBase('webpack.config.js');
 
 //endregion

@@ -17,7 +17,7 @@ export const svgLoader = (type: TSvgLoader): RuleSetRule => {
     case 'raw':
       return assetLoader(svgRegex, 'asset/source');
     default:
-      logBundlerErr(messageRunOptionErr('svgLoaderType', type, arrToStr(ALL_SVG_LOADERS)));
+      logBundlerErr(messageRunOptionErr('svgLoaderType', type, arrToStr(ALL_SVG_LOADERS as unknown as Array<string>)));
       throw '';
   }
 };
