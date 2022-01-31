@@ -5,8 +5,8 @@ import {ALL_BUNDLERS, IRunOptions, TPossibleBundlers} from './bundler/contract';
 import {normalizeOptions, printOptions} from './util/options.normalizer';
 import {arrToStr, messageRunOptionErr} from './util/common';
 import {reactBundler} from './bundler/react/react.bundler';
-import {logBundlerErr} from './util/log';
-import {prepareEnv} from './util/env';
+import {logAction, logBundlerErr} from './util/log';
+import {prepareEnv, runModeInfo} from './util/env';
 
 const bundlers: TPossibleBundlers = {
   react: reactBundler
@@ -36,4 +36,5 @@ else if (findArg('--test'))
 else
   prepareEnv('development');
 
+logAction(`Start bundler "${runOpt.bundler}", ${runModeInfo().NODE_ENV}`, false);
 bundler(opt);
