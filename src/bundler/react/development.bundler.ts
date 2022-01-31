@@ -15,7 +15,7 @@ export function runDevelopmentBundler(opt: IOptions): void {
 
   devServer.startCallback(() => {
     logAction('Development server is running.');
-    logAction('Starting webpack compilation...');
+    logAction('Starting webpack compilation...', false);
   });
 
 }
