@@ -1,4 +1,5 @@
-import {DIST_DIR, excludeBase, relativeToBase} from './params';
+import {join} from 'path';
+import {DIST_DIR, excludeBase, PUBLIC_DIR, relativeToBase} from './params';
 import {IOptions, IRunOptions} from '../bundler/contract';
 import {logAction, logBundlerErr, logOption} from './log';
 import {messageRunOptionErr} from './common';
@@ -34,9 +35,9 @@ export const normalizeOptions = (
 
   outputPath = outputPath ? relativeToBase(outputPath) : DIST_DIR;
   outputFilename = outputFilename || '';
-  assetPath = assetPath ? relativeToBase(assetPath) : '';
-  templatePath = templatePath ? relativeToBase(templatePath) : '';
-  svgLoaderType = svgLoaderType || 'raw';
+  assetPath = assetPath ? relativeToBase(assetPath) : PUBLIC_DIR;
+  templatePath = templatePath ? relativeToBase(templatePath) : join(PUBLIC_DIR, 'index.html');
+  svgLoaderType = svgLoaderType || 'react-component';
   host = host || 'localhost';
   port = port || 3000;
   publicPath = publicPath || '/';
