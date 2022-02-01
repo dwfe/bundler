@@ -41,6 +41,8 @@ export interface IRunOptions {
  */
 export interface IOptions {
 
+  target: 'web' | 'node'; // https://webpack.js.org/configuration/target/#string
+
   entry: Configuration['entry']; // https://webpack.js.org/configuration/entry-context/#entry
   outputPath: string;
   outputFilename: string;

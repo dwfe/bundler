@@ -1,15 +1,16 @@
 import {Configuration, DefinePlugin} from 'webpack';
 import merge from 'webpack-merge';
-import {assetLoader, htmlWebpackPlugin, styleLoaders, svgLoader, tscriptLoader} from '../../../lp';
+import {assetLoader, styleLoaders, svgLoader, tsLoader} from '../../../loader';
 import {printConfigOverrideInfo} from '../../../util/common'
 import {stringifiedProcessEnv} from '../../../util/env';
 import {OVERRIDE_CONFIG} from '../../../util/params'
+import {htmlWebpackPlugin} from '../../../plugin';
 import {IOptions} from '../../contract';
 
-export const getBaseConfig = ({entry, templatePath, svgLoaderType}: IOptions): Configuration => {
+export const getBaseConfig = ({target, entry, templatePath, svgLoaderType}: IOptions): Configuration => {
   printConfigOverrideInfo();
   return merge({
-    target: 'web',
+    target,
     entry,
     resolve: {
       extensions: ['.tsx', '.ts', '.js', '.jsx'],
@@ -18,7 +19,7 @@ export const getBaseConfig = ({entry, templatePath, svgLoaderType}: IOptions): C
       rules: [
         {
           oneOf: [
-            tscriptLoader(/\.(tsx|ts|js|jsx)$/),
+            tsLoader(),
             ...styleLoaders(),
             assetLoader(/\.(png|gif|jpg|jpeg)$/),
             svgLoader(svgLoaderType),

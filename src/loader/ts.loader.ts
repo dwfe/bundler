@@ -10,7 +10,7 @@ import {runModeInfo} from '../util/env';
  *  1) если в проекте найден файл tsconfig.json, то берутся настройки из него. Иначе используются default настройки tsc;
  *  2) затем они дополняются, либо переопределяются настройками из поля "options".
  */
-export const tscriptLoader = (test: RuleSetRule['test']): RuleSetRule => ({
+export const tsLoader = (test: RuleSetRule['test'] = /\.(tsx|ts|js|jsx)$/): RuleSetRule => ({
   test,
   loader: 'ts-loader',
   exclude: /node_modules/,

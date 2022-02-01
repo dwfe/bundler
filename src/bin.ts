@@ -4,9 +4,8 @@ import {ARGS, findArg, OPTIONS_MAP, OPTIONS_MAP_FIELD_NAME} from './util/params'
 import {ALL_BUNDLERS, IRunOptions, TPossibleBundlers} from './bundler/contract';
 import {normalizeOptions, printOptions} from './util/options';
 import {arrToStr, messageRunOptionErr} from './util/common';
-import {reactBundler} from './bundler/react/react.bundler';
-import {nodeBundler} from './bundler/node/node.bundler'
 import {logAction, logBundlerErr} from './util/log';
+import {nodeBundler, reactBundler} from './bundler';
 import {prepareEnv, runModeInfo} from './util/env';
 
 if (!OPTIONS_MAP || !Object.keys(OPTIONS_MAP).length) {

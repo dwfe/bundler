@@ -25,7 +25,6 @@
   ],
   "scripts": {
     "build": "rimraf ./dist && tsc -p src/tsconfig.json",
-    "bundle": "npm run build && node dist/self.bundle.js",
     "version": "npm run build",
     "postversion": "git push",
     "deploy": "npm version patch && npm publish"

@@ -3,14 +3,13 @@ import merge from 'webpack-merge';
 import {printConfigOverrideInfo} from '../../util/common';
 import {stringifiedProcessEnv} from '../../util/env';
 import {OVERRIDE_CONFIG} from '../../util/params';
-import {tscriptLoader} from '../../lp';
+import {tsLoader} from '../../loader';
 import {IOptions} from '../contract';
 
-export const getConfig = ({entry, outputPath}: IOptions): Configuration => {
+export const getConfig = ({target, entry, outputPath}: IOptions): Configuration => {
   printConfigOverrideInfo();
-  // @ts-ignore
   return merge({
-    target: 'node',
+    target,
     mode: 'production',
     bail: true,
     entry,
@@ -24,7 +23,7 @@ export const getConfig = ({entry, outputPath}: IOptions): Configuration => {
       rules: [
         {
           oneOf: [
-            tscriptLoader(/\.(tsx|ts|js|jsx)$/),
+            tsLoader(),
           ]
         }
       ]
@@ -32,11 +31,5 @@ export const getConfig = ({entry, outputPath}: IOptions): Configuration => {
     plugins: [
       new DefinePlugin(stringifiedProcessEnv()),
     ],
-    optimization: {
-      minimizer: [],
-      splitChunks: {
-        chunks: 'all'
-      }
-    },
   } as Configuration, OVERRIDE_CONFIG || {});
 };

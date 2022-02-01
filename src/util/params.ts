@@ -39,6 +39,8 @@ export function relativeToBase(...paths: string[]): string {
 }
 
 export function excludeBase(value: string): string {
+  if (!value)
+    return value;
   const unixSeparator = '/';
   const winSeparator = '\\';
   let result = value.replace(BASE_DIR, '');

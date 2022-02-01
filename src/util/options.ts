@@ -19,6 +19,10 @@ export const normalizeOptions = (
   }: IRunOptions
 ): IOptions => {
 
+  let target: IOptions['target'] = 'web';
+  if (bundler === 'node')
+    target = 'node';
+
   if (!entryPoint) {
     logBundlerErr(messageRunOptionErr('entryPoint', entryPoint, 'non empty string'));
     throw '';
@@ -29,7 +33,7 @@ export const normalizeOptions = (
     entry = {main: entryPoint};
 
   outputPath = outputPath ? relativeToBase(outputPath) : DIST_DIR;
-  outputFilename = outputFilename || 'index.js';
+  outputFilename = outputFilename || '';
   assetPath = assetPath ? relativeToBase(assetPath) : '';
   templatePath = templatePath ? relativeToBase(templatePath) : '';
   svgLoaderType = svgLoaderType || 'raw';
@@ -37,8 +41,8 @@ export const normalizeOptions = (
   port = port || 3000;
   publicPath = publicPath || '/';
 
-
   return {
+    target,
     entry,
     outputPath,
     outputFilename,
@@ -56,6 +60,9 @@ export function printOptions(opt: IOptions): void {
 
   for (let [option, value] of Object.entries(opt)) {
     switch (option as keyof IOptions) {
+      case 'target':
+        result[1] = ['target', value];
+        break;
       case 'entry':
         const value2 = Object
           .entries<string>(value)
@@ -63,33 +70,33 @@ export function printOptions(opt: IOptions): void {
             acc[k] = excludeBase(v);
             return acc;
           }, {});
-        result[1] = ['entry', JSON.stringify(value2)];
+        result[2] = ['entry', JSON.stringify(value2)];
         break;
       case 'outputPath':
-        result[2] = ['outputPath', excludeBase(value)];
+        result[3] = ['outputPath', excludeBase(value)];
         break;
       case 'outputFilename':
-        result[3] = ['outputFilename', value];
+        result[4] = ['outputFilename', orUnset(value)];
         break;
       case 'assetPath':
         value = value || 'unset';
-        result[4] = ['assetPath', excludeBase(value)];
+        result[5] = ['assetPath', orUnset(excludeBase(value))];
         break;
       case 'templatePath':
         value = value || 'unset';
-        result[5] = ['templatePath', excludeBase(value)];
+        result[6] = ['templatePath', orUnset(excludeBase(value))];
         break;
       case 'svgLoaderType':
-        result[6] = ['svgLoaderType', value];
+        result[7] = ['svgLoaderType', value];
         break;
       case 'host':
-        result[7] = ['host', value];
+        result[8] = ['host', value];
         break;
       case 'port':
-        result[8] = ['port', value];
+        result[9] = ['port', value];
         break;
       case 'publicPath':
-        result[9] = ['publicPath', value];
+        result[10] = ['publicPath', value];
         break;
       default:
         logBundlerErr(`Print unknown option "${option}"`);
@@ -100,4 +107,8 @@ export function printOptions(opt: IOptions): void {
   for (const [, [option, value]] of Object.entries(result))
     logOption(option, value);
   console.log(' ');
+}
+
+function orUnset(value: any) {
+  return value || '--';
 }
