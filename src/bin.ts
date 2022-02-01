@@ -15,16 +15,16 @@ if (!runOpt) {
   throw '';
 }
 
-const opt = normalizeOptions(runOpt);
-if (runOpt.printOptions)
-  printOptions(opt);
-
 if (findArg('--prod'))
   prepareEnv('production');
 else if (findArg('--test'))
   prepareEnv('test');
 else
   prepareEnv('development');
+
+const opt = normalizeOptions(runOpt);
+if (runOpt.printOptions)
+  printOptions(opt);
 
 const bundlers: TPossibleBundlers = {
   react: reactBundler
