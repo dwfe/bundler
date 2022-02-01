@@ -16,7 +16,7 @@
     "url": "git@github.com:dwfe/bundler.git"
   },
   "bin": {
-    "dwfeBundler": "dist/index.js"
+    "dwfeBundler": "dist/bin.js"
   },
   "files": [
     "dist",
