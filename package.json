@@ -1,6 +1,6 @@
 {
   "name": "@do-while-for-each/bundler",
-  "description": "Tools for bundle of JS/TS sources",
+  "description": "The Bundler of JS/TS sources",
   "version": "1.0.20",
   "homepage": "https://github.com/dwfe/bundler",
   "bugs": "https://github.com/dwfe/bundler/issues",
@@ -25,6 +25,7 @@
   ],
   "scripts": {
     "build": "rimraf ./dist && tsc -p src/tsconfig.json",
+    "bundle": "npm run build && node dist/self.bundle.js",
     "version": "npm run build",
     "postversion": "git push",
     "deploy": "npm version patch && npm publish"

@@ -1,7 +1,7 @@
 import {RuleSetRule} from 'webpack';
-import {arrToStr, messageRunOptionErr} from '../../../util/common';
-import {ALL_SVG_LOADERS, TSvgLoader} from '../../contract';
-import {logBundlerErr} from '../../../util/log';
+import {arrToStr, messageRunOptionErr} from '../util/common';
+import {ALL_SVG_LOADERS, TSvgLoader} from '../bundler/contract';
+import {logBundlerErr} from '../util/log';
 import {assetLoader} from './asset.loader';
 
 const svgRegex = /\.svg$/;

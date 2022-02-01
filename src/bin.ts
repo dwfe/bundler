@@ -5,8 +5,14 @@ import {ALL_BUNDLERS, IRunOptions, TPossibleBundlers} from './bundler/contract';
 import {normalizeOptions, printOptions} from './util/options';
 import {arrToStr, messageRunOptionErr} from './util/common';
 import {reactBundler} from './bundler/react/react.bundler';
+import {nodeBundler} from './bundler/node/node.bundler'
 import {logAction, logBundlerErr} from './util/log';
 import {prepareEnv, runModeInfo} from './util/env';
+
+if (!OPTIONS_MAP || !Object.keys(OPTIONS_MAP).length) {
+  logBundlerErr(`To run the bundler, specify an object with options in package.json -> field "${OPTIONS_MAP_FIELD_NAME}"`);
+  throw '';
+}
 
 const [arg1] = ARGS;
 const runOpt = OPTIONS_MAP[arg1] as IRunOptions;
@@ -27,7 +33,8 @@ if (runOpt.printOptions)
   printOptions(opt);
 
 const bundlers: TPossibleBundlers = {
-  react: reactBundler
+  react: reactBundler,
+  node: nodeBundler,
 };
 const bundler = bundlers[runOpt.bundler];
 if (!bundler) {

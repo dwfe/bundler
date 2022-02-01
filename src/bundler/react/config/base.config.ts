@@ -1,15 +1,13 @@
 import {Configuration, DefinePlugin} from 'webpack';
 import merge from 'webpack-merge';
-import {assetLoader, htmlWebpackPlugin, styleLoaders, svgLoader, tscriptLoader} from '../common';
-import {OVERRIDE_CONFIG, OVERRIDE_CONFIG_FILE} from '../../../util/params'
+import {assetLoader, htmlWebpackPlugin, styleLoaders, svgLoader, tscriptLoader} from '../../../lp';
+import {printConfigOverrideInfo} from '../../../util/common'
 import {stringifiedProcessEnv} from '../../../util/env';
-import {logSuccess} from '../../../util/log';
+import {OVERRIDE_CONFIG} from '../../../util/params'
 import {IOptions} from '../../contract';
 
-export const getBaseConfig = (opt: IOptions): Configuration => {
-  const {entry, templatePath, svgLoaderType} = opt;
-  if (OVERRIDE_CONFIG)
-    logSuccess('Configuration for override:', OVERRIDE_CONFIG_FILE);
+export const getBaseConfig = ({entry, templatePath, svgLoaderType}: IOptions): Configuration => {
+  printConfigOverrideInfo();
   return merge({
     target: 'web',
     entry,

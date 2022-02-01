@@ -11,6 +11,7 @@ import {messageRunOptionErr} from './common';
  */
 export const normalizeOptions = (
   {
+    bundler,
     entryPoint, outputPath, outputFilename,
     assetPath, templatePath,
     svgLoaderType,
@@ -22,6 +23,11 @@ export const normalizeOptions = (
     logBundlerErr(messageRunOptionErr('entryPoint', entryPoint, 'non empty string'));
     throw '';
   }
+  entryPoint = relativeToBase(entryPoint);
+  let entry: IOptions['entry'] = {index: entryPoint};
+  if (bundler === 'react')
+    entry = {main: entryPoint};
+
   outputPath = outputPath ? relativeToBase(outputPath) : DIST_DIR;
   outputFilename = outputFilename || 'index.js';
   assetPath = assetPath ? relativeToBase(assetPath) : '';
@@ -31,9 +37,6 @@ export const normalizeOptions = (
   port = port || 3000;
   publicPath = publicPath || '/';
 
-  const entry = {
-    main: relativeToBase(entryPoint)
-  }
 
   return {
     entry,

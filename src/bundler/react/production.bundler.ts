@@ -1,7 +1,7 @@
 import webpack from 'webpack';
-import {logAction, logErr, logSuccess, logWarn} from '../../util/log';
-import {cleanDir, copySync} from '../../util/common';
+import {callbackWebpack, cleanDir, copySync} from '../../util/common';
 import {getProductionConfig} from './config/config';
+import {logAction} from '../../util/log';
 import {IOptions} from '../contract';
 
 export function runProductionBundler(opt: IOptions): void {
@@ -16,16 +16,7 @@ export function runProductionBundler(opt: IOptions): void {
     copySync(assetPath, outputPath, allowedToCopyFilter);
   }
 
-  webpack(getProductionConfig(opt), (err, stats) => {
-    const message = stats?.toString() || 'none';
-    if (err || stats?.hasErrors()) {
-      logErr('Bundle error:', err?.toString() || 'none');
-      logErr('Webpack stats error:', message);
-    } else if (stats?.hasWarnings()) {
-      logWarn('Webpack stats warning:', message);
-    } else
-      logSuccess('', message);
-  });
+  webpack(getProductionConfig(opt), callbackWebpack);
 
   logAction('Creating an optimized production build...', false);
 }

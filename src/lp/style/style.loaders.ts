@@ -1,6 +1,6 @@
 import {RuleSetRule} from 'webpack';
 import {prepareStyleLoaders} from './prepare-style.loaders';
-import {runModeInfo} from '../../../../util/env';
+import {runModeInfo} from '../../util/env';
 
 const cssModuleRegex = /\.module\.css$/;
 // const sassRegex = /\.(scss|sass)$/;

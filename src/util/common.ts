@@ -1,9 +1,17 @@
 import {copyFileSync, existsSync, lstatSync, mkdirSync, readdirSync, rmSync} from 'fs';
+import {Stats} from 'webpack';
 import {join} from 'path';
+import {OVERRIDE_CONFIG, OVERRIDE_CONFIG_FILE} from './params';
+import {logErr, logSuccess, logWarn} from './log';
 import {IRunOptions} from '../bundler/contract';
 
 export const messageRunOptionErr = (optionField: keyof IRunOptions, value: any, expected: any): string =>
   `Incorrect value of the "${optionField}" option field: "${value}". Possible value(s): ${expected}`;
+
+export function printConfigOverrideInfo(): void {
+  if (OVERRIDE_CONFIG)
+    logSuccess('Configuration for override:', OVERRIDE_CONFIG_FILE);
+}
 
 /**
  * ['hello', 'world', 123] => '"hello", "world", "123"'
@@ -58,4 +66,16 @@ export function cleanDir(dir: string): void {
 
 function isDirectory(file: string): boolean {
   return lstatSync(file).isDirectory();
+}
+
+
+export function callbackWebpack(err?: Error, stats?: Stats): void {
+  const message = stats?.toString() || 'none';
+  if (err || stats?.hasErrors()) {
+    logErr('Bundle error:', err?.toString() || 'none');
+    logErr('Webpack stats error:', message);
+  } else if (stats?.hasWarnings()) {
+    logWarn('Webpack stats warning:', message);
+  } else
+    logSuccess('', message);
 }
