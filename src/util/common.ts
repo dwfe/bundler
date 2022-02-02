@@ -1,4 +1,4 @@
-import {copyFileSync, existsSync, lstatSync, mkdirSync, readdirSync, rmSync} from 'fs';
+import {copyFileSync, existsSync, lstatSync, mkdirSync, PathLike, readdirSync, rmSync} from 'fs';
 import {Stats} from 'webpack';
 import {join} from 'path';
 import {OVERRIDE_CONFIG, OVERRIDE_CONFIG_FILE} from './params';
@@ -51,11 +51,11 @@ export function copySync(
     copyFileSync(src, dest);
 }
 
-export function cleanDir(dir: string): void {
+export function cleanDir(dir: PathLike): void {
   if (!existsSync(dir) || !isDirectory(dir))
     return;
   readdirSync(dir)
-    .map(item => join(dir, item))
+    .map(item => join(dir as string, item))
     .forEach(file =>
       rmSync(file, {
         recursive: isDirectory(file),
@@ -64,7 +64,7 @@ export function cleanDir(dir: string): void {
     );
 }
 
-function isDirectory(file: string): boolean {
+function isDirectory(file: PathLike): boolean {
   return lstatSync(file).isDirectory();
 }
 
