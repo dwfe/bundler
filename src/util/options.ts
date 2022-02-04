@@ -1,8 +1,8 @@
+import {logAction, logOption} from '@do-while-for-each/log-node';
 import {join} from 'path';
 import {DIST_DIR, excludeBase, PUBLIC_DIR, relativeToBase} from './params';
+import {logBundlerErr, messageRunOptionErr} from './common';
 import {IOptions, IRunOptions} from '../bundler/contract';
-import {logAction, logBundlerErr, logOption} from './log';
-import {messageRunOptionErr} from './common';
 
 /**
  * We must ensure that:

@@ -1,7 +1,7 @@
+import {logAction} from '@do-while-for-each/log-node';
 import webpack from 'webpack';
 import {callbackWebpack, cleanDir, copySync} from '../../util/common';
 import {getProductionConfig} from './config/config';
-import {logAction} from '../../util/log';
 import {IOptions} from '../contract';
 
 export function runProductionBundler(opt: IOptions): void {

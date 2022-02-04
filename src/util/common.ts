@@ -1,22 +1,22 @@
 import {copyFileSync, existsSync, lstatSync, mkdirSync, PathLike, readdirSync, rmSync} from 'fs';
+import {logErr, logSuccess, logWarn} from '@do-while-for-each/log-node';
 import {Stats} from 'webpack';
 import {join} from 'path';
 import {OVERRIDE_CONFIG, OVERRIDE_CONFIG_FILE} from './params';
-import {logErr, logSuccess, logWarn} from './log';
 import {IRunOptions} from '../bundler/contract';
 
 export const messageRunOptionErr = (optionField: keyof IRunOptions, value: any, expected: any): string =>
   `Incorrect value of the "${optionField}" option field: "${value}". Possible value(s): ${expected}`;
 
-export function printConfigOverrideInfo(): void {
-  if (OVERRIDE_CONFIG)
-    logSuccess('Configuration for override:', OVERRIDE_CONFIG_FILE);
+export function logBundlerErr(...message: string[]): void {
+  logErr('Bundler:', ...message);
 }
 
 /**
  * ['hello', 'world', 123] => '"hello", "world", "123"'
  */
 export const arrToStr = (arr: string[]): string => arr.map(x => `"${x}"`).join(', ');
+
 
 export function onProcessExit(callback: () => void): void {
   ['SIGINT', 'SIGTERM'].forEach(signal => {
@@ -78,4 +78,9 @@ export function callbackWebpack(err?: Error, stats?: Stats): void {
     logWarn('Webpack stats warning:', message);
   } else
     logSuccess('', message);
+}
+
+export function printConfigOverrideInfo(): void {
+  if (OVERRIDE_CONFIG)
+    logSuccess('Configuration for override:', OVERRIDE_CONFIG_FILE);
 }

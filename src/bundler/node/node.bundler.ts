@@ -1,6 +1,6 @@
+import {logAction} from '@do-while-for-each/log-node';
 import webpack from 'webpack';
 import {callbackWebpack} from '../../util/common';
-import {logAction} from '../../util/log';
 import {IOptions} from '../contract';
 import {getConfig} from './config';
 
