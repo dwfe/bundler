@@ -6,7 +6,6 @@ import {existsSync} from 'fs';
 export const BASE_DIR = process.cwd();
 export const SRC_DIR = relativeToBase('src');
 export const DIST_DIR = relativeToBase('dist');
-export const DOTENV_FILE = relativeToBase('.env');
 export const PUBLIC_DIR = relativeToBase('public');
 export const PKG_FILE = relativeToBase('package.json');
 export const OVERRIDE_CONFIG_FILE = relativeToBase('webpack.config.js');
