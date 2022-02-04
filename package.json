@@ -51,7 +51,7 @@
     "@do-while-for-each/env": "^1.0.3"
   },
   "devDependencies": {
-    "@types/node": "16.11.21"
+    "@types/node": "^16.11.22"
   },
   "publishConfig": {
     "access": "public"
