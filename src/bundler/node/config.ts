@@ -1,7 +1,7 @@
+import {stringifiedProcessEnv} from '@do-while-for-each/env';
 import {Configuration, DefinePlugin} from 'webpack'
 import merge from 'webpack-merge';
 import {printConfigOverrideInfo} from '../../util/common';
-import {stringifiedProcessEnv} from '../../util/env';
 import {OVERRIDE_CONFIG} from '../../util/params';
 import {tsLoader} from '../../loader';
 import {IOptions} from '../contract';

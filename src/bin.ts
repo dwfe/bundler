@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
+import {prepareEnv, runModeInfo} from '@do-while-for-each/env';
 import {ARGS, findArg, OPTIONS_MAP, OPTIONS_MAP_FIELD_NAME} from './util/params';
 import {ALL_BUNDLERS, IRunOptions, TPossibleBundlers} from './bundler/contract';
 import {normalizeOptions, printOptions} from './util/options';
 import {arrToStr, messageRunOptionErr} from './util/common';
 import {logAction, logBundlerErr} from './util/log';
 import {nodeBundler, reactBundler} from './bundler';
-import {prepareEnv, runModeInfo} from './util/env';
 
 if (!OPTIONS_MAP || !Object.keys(OPTIONS_MAP).length) {
   logBundlerErr(`To run the bundler, specify an object with options in package.json -> field "${OPTIONS_MAP_FIELD_NAME}"`);

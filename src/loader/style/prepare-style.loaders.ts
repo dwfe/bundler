@@ -1,6 +1,6 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import {runModeInfo} from '@do-while-for-each/env';
 import {RuleSetRule} from 'webpack';
-import {runModeInfo} from '../../util/env';
 import {SRC_DIR} from '../../util/params';
 
 type TRule = string | RuleSetRule;
