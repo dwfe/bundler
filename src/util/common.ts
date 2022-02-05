@@ -1,7 +1,5 @@
-import {copyFileSync, existsSync, lstatSync, mkdirSync, PathLike, readdirSync, rmSync} from 'fs';
 import {logErr, logSuccess, logWarn} from '@do-while-for-each/log-node';
 import {Stats} from 'webpack';
-import {join} from 'path';
 import {OVERRIDE_CONFIG, OVERRIDE_CONFIG_FILE} from './params';
 import {IRunOptions} from '../bundler/contract';
 
@@ -25,47 +23,6 @@ export function onProcessExit(callback: () => void): void {
       process.exit();
     });
   });
-}
-
-export function copySync(
-  src: string,
-  dest: string,
-  allowedToCopyFilter?: (srcPath: string) => boolean
-): void {
-  if (!existsSync(src) || allowedToCopyFilter && !allowedToCopyFilter(src))
-    return;
-  if (isDirectory(src)) {
-    if (!existsSync(dest))
-      mkdirSync(dest);
-    let files = readdirSync(src);
-    if (allowedToCopyFilter)
-      files = files.filter(allowedToCopyFilter);
-    files.forEach(item => {
-      copySync(
-        join(src, item),
-        join(dest, item),
-        allowedToCopyFilter
-      );
-    });
-  } else
-    copyFileSync(src, dest);
-}
-
-export function cleanDir(dir: PathLike): void {
-  if (!existsSync(dir) || !isDirectory(dir))
-    return;
-  readdirSync(dir)
-    .map(item => join(dir as string, item))
-    .forEach(file =>
-      rmSync(file, {
-        recursive: isDirectory(file),
-        force: true
-      })
-    );
-}
-
-function isDirectory(file: PathLike): boolean {
-  return lstatSync(file).isDirectory();
 }
 
 

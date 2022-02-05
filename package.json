@@ -48,7 +48,8 @@
     "resolve-url-loader": "5.0.0",
     "@svgr/webpack": "5.5.0",
     "@do-while-for-each/log-node": "^1.0.2",
-    "@do-while-for-each/env": "^1.0.3"
+    "@do-while-for-each/env": "^1.0.3",
+    "@do-while-for-each/fs": "^1.0.1"
   },
   "devDependencies": {
     "@types/node": "^16.11.22"
