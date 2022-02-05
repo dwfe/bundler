@@ -3,23 +3,23 @@ import {existsSync} from 'fs';
 
 //region File paths
 
-export const BASE_DIR = process.cwd();
-export const SRC_DIR = relativeToBase('src');
-export const DIST_DIR = relativeToBase('dist');
-export const PUBLIC_DIR = relativeToBase('public');
-export const PKG_FILE = relativeToBase('package.json');
-export const OVERRIDE_CONFIG_FILE = relativeToBase('webpack.config.js');
+export const BASE_DIR: Readonly<string> = process.cwd();
+export const SRC_DIR: Readonly<string> = relativeToBase('src');
+export const DIST_DIR: Readonly<string> = relativeToBase('dist');
+export const PUBLIC_DIR: Readonly<string> = relativeToBase('public');
+export const PKG_FILE: Readonly<string> = relativeToBase('package.json');
+export const OVERRIDE_CONFIG_FILE: Readonly<string> = relativeToBase('webpack.config.js');
 
 //endregion
 
 
 //region Objects/Modules
 
-export const OPTIONS_MAP_FIELD_NAME = 'dwfeBundlerOptions';
+export const OPTIONS_MAP_FIELD_NAME: Readonly<string> = 'dwfeBundlerOptions';
 
-export const PKG = require(PKG_FILE);
-export const OPTIONS_MAP = PKG[OPTIONS_MAP_FIELD_NAME];
-export const OVERRIDE_CONFIG = existsSync(OVERRIDE_CONFIG_FILE) ? require(OVERRIDE_CONFIG_FILE) : null;
+export const PKG: Readonly<Record<string, any>> = require(PKG_FILE);
+export const OPTIONS_MAP: Readonly<Record<string, any>> = PKG[OPTIONS_MAP_FIELD_NAME];
+export const OVERRIDE_CONFIG: Readonly<any> = existsSync(OVERRIDE_CONFIG_FILE) ? require(OVERRIDE_CONFIG_FILE) : null;
 
 //endregion
 
@@ -27,7 +27,7 @@ export const OVERRIDE_CONFIG = existsSync(OVERRIDE_CONFIG_FILE) ? require(OVERRI
 //region Arguments
 
 const [, , ...args] = process.argv;
-export const ARGS = args;
+export const ARGS: Readonly<string[]> = args;
 
 //endregion
 
