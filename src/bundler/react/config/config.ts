@@ -9,7 +9,7 @@ export const getDevelopmentConfig = (opt: IOptions): Configuration => ({
   mode: 'development',
   devtool: 'cheap-module-source-map',
   // output: this is the responsibility of WebpackDevServer
-  stats: {
+  stats: { // https://webpack.js.org/configuration/stats/#stats-options
     builtAt: true,
     version: false,
     assetsSpace: 3,
