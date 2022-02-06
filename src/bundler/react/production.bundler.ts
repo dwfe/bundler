@@ -1,4 +1,4 @@
-import {cleanDir, copySync} from '@do-while-for-each/fs';
+import {cleanDir, copy} from '@do-while-for-each/fs';
 import {logAction} from '@do-while-for-each/log-node';
 import {basename} from 'path';
 import webpack from 'webpack';
@@ -10,14 +10,14 @@ export function runProductionBundler(opt: IOptions): void {
   const {outputPath, assetPath, templatePath} = opt;
 
   logAction('Preparing the output directory...', false);
-  cleanDir(outputPath);
+  cleanDir(outputPath, true);
   if (assetPath) {
     const templateFileName = templatePath && basename(templatePath);
-    copySync(assetPath, outputPath, {
+    copy(assetPath, outputPath, {
       showLog: true,
       skipSystemFiles: true,
       allowedToCopyFilter: templateFileName
-        ? (srcFileName: string) => srcFileName !== templateFileName // usually the template is put in the asset dir
+        ? (nextSrcFileName: string) => nextSrcFileName !== templateFileName // usually the template is put in the asset dir
         : undefined,
     });
   }
