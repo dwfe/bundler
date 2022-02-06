@@ -13,10 +13,13 @@ export function runProductionBundler(opt: IOptions): void {
   cleanDir(outputPath);
   if (assetPath) {
     const templateFileName = templatePath && basename(templatePath);
-    const allowedToCopyFilter = templateFileName
-      ? (srcFileName: string) => srcFileName !== templateFileName // usually the template is put in the asset dir
-      : undefined;
-    copySync(assetPath, outputPath, allowedToCopyFilter);
+    copySync(assetPath, outputPath, {
+      showLog: true,
+      skipSystemFiles: true,
+      allowedToCopyFilter: templateFileName
+        ? (srcFileName: string) => srcFileName !== templateFileName // usually the template is put in the asset dir
+        : undefined,
+    });
   }
 
   webpack(getProductionConfig(opt), callbackWebpack);
