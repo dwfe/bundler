@@ -10,7 +10,7 @@ export function runProductionBundler(opt: IOptions): void {
   const {outputPath, assetPath, templatePath} = opt;
 
   logAction('Preparing the output directory...', false);
-  cleanDir(outputPath, {showLog: true});
+  cleanDir(outputPath, {showLog: true, skipExistsCheck: true});
   if (assetPath) {
     const templateFileName = templatePath && basename(templatePath);
     copy(assetPath, outputPath, {
