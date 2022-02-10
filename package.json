@@ -49,7 +49,7 @@
     "@svgr/webpack": "5.5.0",
     "@do-while-for-each/log-node": "^1.0.4",
     "@do-while-for-each/env": "^1.0.3",
-    "@do-while-for-each/fs": "^1.2.5"
+    "@do-while-for-each/fs": "^1.2.6"
   },
   "devDependencies": {
     "@types/node": "^16.11.22"
