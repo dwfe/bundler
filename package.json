@@ -1,7 +1,7 @@
 {
   "name": "@do-while-for-each/bundler",
   "description": "The Bundler of JS/TS sources",
-  "version": "1.0.28",
+  "version": "1.0.29",
   "homepage": "https://github.com/dwfe/bundler",
   "bugs": "https://github.com/dwfe/bundler/issues",
   "keywords": [
