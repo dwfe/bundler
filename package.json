@@ -24,7 +24,8 @@
     "README.md"
   ],
   "scripts": {
-    "build": "dwfeFs rmForce dist && tsc -b src/tsconfig.json",
+    "clean": "dwfeFs cleanDir . --noConfirm --fileNames=\"dist;node_modules;package-lock.json\"",
+    "build": "dwfeFs rmForce dist --noConfirm && tsc -b src/tsconfig.json",
     "version": "npm run build",
     "postversion": "git push",
     "deploy": "npm version patch && npm publish"
@@ -47,9 +48,9 @@
     "css-minimizer-webpack-plugin": "3.4.1",
     "resolve-url-loader": "5.0.0",
     "@svgr/webpack": "5.5.0",
-    "@do-while-for-each/log-node": "^1.0.4",
+    "@do-while-for-each/log-node": "^1.0.7",
     "@do-while-for-each/env": "^1.0.3",
-    "@do-while-for-each/fs": "^1.2.6"
+    "@do-while-for-each/fs": "^1.2.11"
   },
   "devDependencies": {
     "@types/node": "^16.11.22"
