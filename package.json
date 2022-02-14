@@ -53,7 +53,7 @@
     "@do-while-for-each/fs": "^1.2.12"
   },
   "devDependencies": {
-    "@types/node": "^16.11.22"
+    "@do-while-for-each/tsconfig": "^1.0.3"
   },
   "publishConfig": {
     "access": "public"
