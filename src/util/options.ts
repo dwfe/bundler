@@ -1,5 +1,4 @@
 import {logAction, logOption} from '@do-while-for-each/log-node';
-import {join} from 'path';
 import {DIST_DIR, excludeBase, PUBLIC_DIR, relativeToBase} from './params';
 import {logBundlerErr, messageRunOptionErr} from './common';
 import {IOptions, IRunOptions} from '../bundler/contract';
@@ -36,7 +35,7 @@ export const normalizeOptions = (
   outputPath = outputPath ? relativeToBase(outputPath) : DIST_DIR;
   outputFilename = outputFilename || '';
   assetPath = assetPath ? relativeToBase(assetPath) : PUBLIC_DIR;
-  templatePath = templatePath ? relativeToBase(templatePath) : join(PUBLIC_DIR, 'index.html');
+  templatePath = templatePath ? relativeToBase(templatePath) : '';
   svgLoaderType = svgLoaderType || 'react-component';
   host = host || 'localhost';
   port = port || 3000;
@@ -57,12 +56,12 @@ export const normalizeOptions = (
 }
 
 export function printOptions(opt: IOptions): void {
-  const result: { [key: number]: [keyof IOptions, string] } = {};
+  const result: [keyof IOptions, string][] = [];
 
   for (let [option, value] of Object.entries(opt)) {
     switch (option as keyof IOptions) {
       case 'target':
-        result[1] = ['target', value];
+        result.push(['target', value]);
         break;
       case 'entry':
         const value2 = Object
@@ -71,33 +70,31 @@ export function printOptions(opt: IOptions): void {
             acc[k] = excludeBase(v);
             return acc;
           }, {});
-        result[2] = ['entry', JSON.stringify(value2)];
+        result.push(['entry', JSON.stringify(value2)]);
         break;
       case 'outputPath':
-        result[3] = ['outputPath', excludeBase(value)];
+        result.push(['outputPath', excludeBase(value)]);
         break;
       case 'outputFilename':
-        result[4] = ['outputFilename', orUnset(value)];
+        result.push(['outputFilename', orUnset(value)]);
         break;
       case 'assetPath':
-        value = value || 'unset';
-        result[5] = ['assetPath', orUnset(excludeBase(value))];
+        result.push(['assetPath', orUnset(excludeBase(value))]);
         break;
       case 'templatePath':
-        value = value || 'unset';
-        result[6] = ['templatePath', orUnset(excludeBase(value))];
+        result.push(['templatePath', orUnset(excludeBase(value))]);
         break;
       case 'svgLoaderType':
-        result[7] = ['svgLoaderType', value];
+        result.push(['svgLoaderType', value]);
         break;
       case 'host':
-        result[8] = ['host', value];
+        result.push(['host', value]);
         break;
       case 'port':
-        result[9] = ['port', value];
+        result.push(['port', value]);
         break;
       case 'publicPath':
-        result[10] = ['publicPath', value];
+        result.push(['publicPath', value]);
         break;
       default:
         logBundlerErr(`Print unknown option "${option}"`);
@@ -105,7 +102,7 @@ export function printOptions(opt: IOptions): void {
     }
   }
   logAction('Bundler options:');
-  for (const [, [option, value]] of Object.entries(result))
+  for (const [option, value] of result)
     logOption(option, value);
   console.log(' ');
 }

@@ -1,6 +1,6 @@
 import {Configuration} from 'webpack';
 
-export const ALL_BUNDLERS = ['react', 'node'] as const;
+export const ALL_BUNDLERS = ['react', 'react-lib', 'node'] as const;
 type BundlerTuple = typeof ALL_BUNDLERS;
 export type TBundler = BundlerTuple[number];
 
