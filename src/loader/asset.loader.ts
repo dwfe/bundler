@@ -13,15 +13,34 @@ type TAsset =
 export function assetLoader(
   test?: RuleSetRule['test'],
   type: TAsset = 'asset',
-  maxSize = 10 * 1024
+  {maxSize, filename}: IOptions = {}
 ): RuleSetRule {
-  return {
+  let rule: RuleSetRule = {
     test,
     type,
-    parser: {
-      dataUrlCondition: {
-        maxSize
-      }
-    }
   };
+  if (maxSize) {
+    rule = {
+      ...rule,
+      parser: {
+        dataUrlCondition: {
+          maxSize
+        }
+      }
+    };
+  }
+  if (filename) {
+    rule = {
+      ...rule,
+      generator: {
+        filename
+      }
+    };
+  }
+  return rule
+}
+
+interface IOptions {
+  maxSize?: number; // 10 * 1024 ---> 10KiB
+  filename?: string;
 }

@@ -49,8 +49,8 @@
     "resolve-url-loader": "5.0.0",
     "@svgr/webpack": "5.5.0",
     "@do-while-for-each/log-node": "^1.0.9",
-    "@do-while-for-each/env": "^1.0.4",
-    "@do-while-for-each/fs": "^1.2.12"
+    "@do-while-for-each/env": "^1.0.5",
+    "@do-while-for-each/fs": "^1.2.13"
   },
   "devDependencies": {
     "@do-while-for-each/tsconfig": "^1.0.3"
