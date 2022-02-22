@@ -15,6 +15,7 @@ export const tsLoader = (test: RuleSetRule['test'] = /\.(tsx|ts|js|jsx)$/): Rule
   loader: 'ts-loader',
   exclude: /node_modules/,
   options: {
+    logLevel: 'info',
     compilerOptions: getCompilerOptions()
   }
 });
