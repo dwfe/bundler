@@ -19,7 +19,7 @@ export function runProductionBundler(opt: IOptions): void {
       showLog: true,
       skipSystemFiles: true,
       allowedToCopyFilter: templateFileName
-        ? (nextSrcFileName: string) => nextSrcFileName !== templateFileName // usually the template is put in the asset dir
+        ? ({iSrcFileName}) => iSrcFileName !== templateFileName // usually the template is put in the asset dir
         : undefined,
     });
   }

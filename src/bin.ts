@@ -5,7 +5,6 @@ import {logAction} from '@do-while-for-each/log-node';
 import {ARGS, findArg, OPTIONS_MAP, OPTIONS_MAP_FIELD_NAME} from './util/params';
 import {ALL_BUNDLERS, IRunOptions, TPossibleBundlers} from './bundler/contract';
 import {arrToStr, logBundlerErr, messageRunOptionErr} from './util/common';
-import {reactLibBundler} from './bundler/react-lib/react-lib.bundler';
 import {normalizeOptions, printOptions} from './util/options';
 import {nodeBundler, reactBundler} from './bundler';
 
@@ -34,7 +33,6 @@ if (runOpt.printOptions)
 
 const bundlers: TPossibleBundlers = {
   'react': reactBundler,
-  'react-lib': reactLibBundler,
   'node': nodeBundler,
 };
 const bundler = bundlers[runOpt.bundler];
