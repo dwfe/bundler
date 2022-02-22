@@ -13,6 +13,7 @@ export const getBaseConfig = ({target, entry, templatePath, svgLoaderType}: IOpt
     target,
     entry,
     resolve: {
+      symlinks: false, // https://webpack.js.org/configuration/resolve/#resolvesymlinks
       extensions: ['.tsx', '.ts', '.js', '.jsx'],
     },
     module: {
