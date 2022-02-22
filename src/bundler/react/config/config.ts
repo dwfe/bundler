@@ -14,7 +14,8 @@ export const getDevelopmentConfig = (opt: IOptions): Configuration => ({
     version: false,
     assetsSpace: 3,
     modulesSpace: 5,
-    chunkModulesSpace: 3
+    chunkModulesSpace: 3,
+    errorDetails: true
   }
 });
 
