@@ -6,7 +6,7 @@ import {getDevelopmentConfig} from './config/config';
 import {onProcessExit} from '../../util/common';
 import {IOptions} from '../contract';
 
-export function runDevelopmentBundler(opt: IOptions): void {
+export function developmentReactBundler(opt: IOptions): void {
 
   const compiler = webpack(getDevelopmentConfig(opt));
   const devServer = new WebpackDevServer(getDevServerConfig(opt), compiler);
