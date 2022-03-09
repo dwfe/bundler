@@ -66,7 +66,7 @@ export function printOptions(opt: IOptions): void {
       case 'entry':
         const value2 = Object
           .entries<string>(value)
-          .reduce<{ [key in string]: string }>((acc, [k, v]) => {
+          .reduce<{ [key: string]: string }>((acc, [k, v]) => {
             acc[k] = excludeBase(v);
             return acc;
           }, {});
@@ -76,13 +76,13 @@ export function printOptions(opt: IOptions): void {
         result.push(['outputPath', excludeBase(value)]);
         break;
       case 'outputFilename':
-        result.push(['outputFilename', orUnset(value)]);
+        result.push(['outputFilename', valueOrUnset(value)]);
         break;
       case 'assetPath':
-        result.push(['assetPath', orUnset(excludeBase(value))]);
+        result.push(['assetPath', valueOrUnset(excludeBase(value))]);
         break;
       case 'templatePath':
-        result.push(['templatePath', orUnset(excludeBase(value))]);
+        result.push(['templatePath', valueOrUnset(excludeBase(value))]);
         break;
       case 'svgLoaderType':
         result.push(['svgLoaderType', value]);
@@ -107,6 +107,6 @@ export function printOptions(opt: IOptions): void {
   console.log(' ');
 }
 
-function orUnset(value: any) {
+function valueOrUnset(value: any) {
   return value || '--';
 }
