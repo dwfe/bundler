@@ -13,7 +13,7 @@ export function productionReactBundler(opt: IOptions): void {
   logAction('Preparing the output directory...', false);
   if (existsSync(outputPath))
     cleanDir(outputPath, {showLog: true});
-  if (assetPath) {
+  if (assetPath && assetPath !== outputPath) {
     const templateFileName = templatePath && basename(templatePath);
     copy(assetPath, outputPath, {
       showLog: true,
