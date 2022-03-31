@@ -9,6 +9,7 @@ export const DIST_DIR: Readonly<string> = relativeToBase('dist');
 export const PUBLIC_DIR: Readonly<string> = relativeToBase('public');
 export const PKG_FILE: Readonly<string> = relativeToBase('package.json');
 export const OVERRIDE_CONFIG_FILE: Readonly<string> = relativeToBase('webpack.config.js');
+export const OVERRIDE_DEV_SERVER_CONFIG_FILE: Readonly<string> = relativeToBase('webpack-dev-server.config.js');
 
 //endregion
 
@@ -20,6 +21,7 @@ export const OPTIONS_MAP_FIELD_NAME: Readonly<string> = 'dwfeBundlerOptions';
 export const PKG: Readonly<Record<string, any>> = require(PKG_FILE);
 export const OPTIONS_MAP: Readonly<Record<string, any>> = PKG[OPTIONS_MAP_FIELD_NAME];
 export const OVERRIDE_CONFIG: Readonly<any> = existsSync(OVERRIDE_CONFIG_FILE) ? require(OVERRIDE_CONFIG_FILE) : null;
+export const OVERRIDE_DEV_SERVER_CONFIG: Readonly<any> = existsSync(OVERRIDE_DEV_SERVER_CONFIG_FILE) ? require(OVERRIDE_DEV_SERVER_CONFIG_FILE) : null;
 
 //endregion
 
