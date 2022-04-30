@@ -24,7 +24,7 @@
     "README.md"
   ],
   "scripts": {
-    "clean": "dwfeFs cleanDir . --noConfirm --fileNames=\"dist;node_modules;package-lock.json\"",
+    "clean": "dwfeFs cleanDir . --fileNames=\"dist;node_modules;package-lock.json\"",
     "build": "dwfeFs rmForce dist --noConfirm && tsc -b src/tsconfig.json",
     "version": "npm run build",
     "postversion": "git push",
@@ -49,8 +49,8 @@
     "resolve-url-loader": "5.0.0",
     "@svgr/webpack": "5.5.0",
     "@do-while-for-each/log-node": "^1.0.9",
-    "@do-while-for-each/env": "^1.0.5",
-    "@do-while-for-each/fs": "^1.2.15"
+    "@do-while-for-each/env": "^1.0.6",
+    "@do-while-for-each/fs": "^1.2.18"
   },
   "devDependencies": {
     "@do-while-for-each/tsconfig": "^1.0.3"
