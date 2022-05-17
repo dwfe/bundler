@@ -1,5 +1,5 @@
 import {RuleSetRule} from 'webpack';
-import {arrToStr, logBundlerErr, messageRunOptionErr} from '../util/common';
+import {arrToStr, logBundlerErr, messageRunOptionErr} from '../util/cmmn';
 import {ALL_SVG_LOADERS, TSvgLoader} from '../bundler/contract';
 import {assetLoader} from './asset.loader';
 

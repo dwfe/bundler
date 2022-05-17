@@ -1,6 +1,6 @@
 import {Configuration} from 'webpack-dev-server';
 import merge from 'webpack-merge';
-import {OVERRIDE_DEV_SERVER_CONFIG} from '../../../util/params';
+import {OVERRIDE_DEV_SERVER_CONFIG} from '../../../util/param';
 import {IOptions} from '../../contract';
 
 export const getDevServerConfig = ({host, port, assetPath, publicPath}: IOptions): Configuration =>

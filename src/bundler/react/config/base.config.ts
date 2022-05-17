@@ -2,8 +2,8 @@ import {stringifiedProcessEnv} from '@do-while-for-each/env';
 import {Configuration, DefinePlugin} from 'webpack';
 import merge from 'webpack-merge';
 import {assetLoader, styleLoaders, svgLoader, tsLoader} from '../../../loader';
-import {printConfigOverrideInfo} from '../../../util/common'
-import {OVERRIDE_CONFIG} from '../../../util/params'
+import {printConfigOverrideInfo} from '../../../util/cmmn'
+import {OVERRIDE_CONFIG} from '../../../util/param'
 import {htmlWebpackPlugin} from '../../../plugin';
 import {IOptions} from '../../contract';
 

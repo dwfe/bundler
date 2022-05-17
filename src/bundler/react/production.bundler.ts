@@ -4,7 +4,7 @@ import {basename} from 'path';
 import {existsSync} from 'fs';
 import webpack from 'webpack';
 import {getProductionConfig} from './config/config';
-import {callbackWebpack} from '../../util/common';
+import {callbackWebpack} from '../../util/cmmn';
 import {IOptions} from '../contract';
 
 export function productionReactBundler(opt: IOptions): void {

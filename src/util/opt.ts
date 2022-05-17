@@ -1,7 +1,7 @@
 import {logAction, logOption} from '@do-while-for-each/log-node';
-import {DIST_DIR, excludeBase, PUBLIC_DIR, relativeToBase} from './params';
-import {logBundlerErr, messageRunOptionErr} from './common';
+import {DIST_DIR, excludeBase, PUBLIC_DIR, relativeToBase} from './param';
 import {IOptions, IRunOptions} from '../bundler/contract';
+import {logBundlerErr, messageRunOptionErr} from './cmmn';
 
 /**
  * We must ensure that:

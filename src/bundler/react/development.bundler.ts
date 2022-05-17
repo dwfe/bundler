@@ -3,7 +3,7 @@ import WebpackDevServer from 'webpack-dev-server';
 import webpack from 'webpack';
 import {getDevServerConfig} from './config/dev.server.config';
 import {getDevelopmentConfig} from './config/config';
-import {onProcessExit} from '../../util/common';
+import {onProcessExit} from '../../util/cmmn';
 import {IOptions} from '../contract';
 
 export function developmentReactBundler(opt: IOptions): void {

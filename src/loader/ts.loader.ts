@@ -1,6 +1,6 @@
 import {runModeInfo} from '@do-while-for-each/env';
 import {RuleSetRule} from 'webpack';
-import {relativeToBase} from '../util/params';
+import {relativeToBase} from '../util/param';
 
 /**
  * TypeScript loader.

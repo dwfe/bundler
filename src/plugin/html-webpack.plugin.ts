@@ -1,7 +1,7 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import {runModeInfo} from '@do-while-for-each/env';
 import {WebpackPluginInstance} from 'webpack';
-import {logBundlerErr, messageRunOptionErr} from '../util/common';
+import {logBundlerErr, messageRunOptionErr} from '../util/cmmn';
 
 /**
  * HTML Webpack Plugin.

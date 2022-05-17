@@ -1,7 +1,10 @@
 import {logErr, logSuccess, logWarn} from '@do-while-for-each/log-node';
 import {Stats} from 'webpack';
-import {OVERRIDE_CONFIG, OVERRIDE_CONFIG_FILE} from './params';
+import {OVERRIDE_CONFIG, OVERRIDE_CONFIG_FILE} from './param';
 import {IRunOptions} from '../bundler/contract';
+
+
+//region Log
 
 export const messageRunOptionErr = (optionField: keyof IRunOptions, value: any, expected: any): string =>
   `Incorrect value of the "${optionField}" option field: "${value}". Possible value(s): ${expected}.`;
@@ -9,6 +12,14 @@ export const messageRunOptionErr = (optionField: keyof IRunOptions, value: any, 
 export function logBundlerErr(...message: string[]): void {
   logErr('Bundler:', ...message);
 }
+
+export function printConfigOverrideInfo(): void {
+  if (OVERRIDE_CONFIG)
+    logSuccess('Configuration for override:', OVERRIDE_CONFIG_FILE);
+}
+
+//region Log
+
 
 /**
  * ['hello', 'world', 123] => '"hello", "world", "123"'
@@ -35,9 +46,4 @@ export function callbackWebpack(err?: Error, stats?: Stats): void {
     logWarn('Webpack stats warning:', message);
   } else
     logSuccess('', message);
-}
-
-export function printConfigOverrideInfo(): void {
-  if (OVERRIDE_CONFIG)
-    logSuccess('Configuration for override:', OVERRIDE_CONFIG_FILE);
 }
