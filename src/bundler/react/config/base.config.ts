@@ -24,7 +24,7 @@ export const getBaseConfig = ({target, entry, templatePath, svgLoaderType}: IOpt
             ...styleLoaders(),
             assetLoader(/\.(png|gif|jpg|jpeg)$/),
             svgLoader(svgLoaderType),
-            assetLoader(/\.(woff|woff2|eot|ttf)$/, 'asset/resource')
+            assetLoader(/\.(woff2|woff|ttf)$/, 'asset/resource')
           ]
         }
       ]

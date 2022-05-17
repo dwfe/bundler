@@ -47,7 +47,6 @@
     "mini-css-extract-plugin": "2.6.0",
     "css-minimizer-webpack-plugin": "3.4.1",
     "resolve-url-loader": "5.0.0",
-    "@svgr/webpack": "6.2.1",
     "@do-while-for-each/log-node": "^1.0.9",
     "@do-while-for-each/env": "^1.0.6",
     "@do-while-for-each/fs": "^1.2.21"

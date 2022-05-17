@@ -4,7 +4,7 @@ export const ALL_BUNDLERS = ['react', 'node'] as const;
 type BundlerTuple = typeof ALL_BUNDLERS;
 export type TBundler = BundlerTuple[number];
 
-export const ALL_SVG_LOADERS = ['react-component', 'raw'] as const;
+export const ALL_SVG_LOADERS = ['rawFileContent', 'fileURL', 'dataURL', 'svgr'] as const;
 type SvgLoaderTuple = typeof ALL_SVG_LOADERS;
 export type TSvgLoader = SvgLoaderTuple[number];
 

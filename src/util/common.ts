@@ -4,7 +4,7 @@ import {OVERRIDE_CONFIG, OVERRIDE_CONFIG_FILE} from './params';
 import {IRunOptions} from '../bundler/contract';
 
 export const messageRunOptionErr = (optionField: keyof IRunOptions, value: any, expected: any): string =>
-  `Incorrect value of the "${optionField}" option field: "${value}". Possible value(s): ${expected}`;
+  `Incorrect value of the "${optionField}" option field: "${value}". Possible value(s): ${expected}.`;
 
 export function logBundlerErr(...message: string[]): void {
   logErr('Bundler:', ...message);
