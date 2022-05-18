@@ -8,8 +8,8 @@ export const SRC_DIR: Readonly<string> = relativeToBase('src');
 export const DIST_DIR: Readonly<string> = relativeToBase('dist');
 export const PUBLIC_DIR: Readonly<string> = relativeToBase('public');
 export const PKG_FILE: Readonly<string> = relativeToBase('package.json');
-export const OVERRIDE_CONFIG_FILE: Readonly<string> = relativeToBase('webpack.config.js');
-export const OVERRIDE_DEV_SERVER_CONFIG_FILE: Readonly<string> = relativeToBase('webpack-dev-server.config.js');
+export const OVERRIDE_CONFIG_FILE: Readonly<string> = relativeToBase('webpack.override.js');
+export const OVERRIDE_DEV_SERVER_CONFIG_FILE: Readonly<string> = relativeToBase('webpack-dev-server.override.js');
 
 //endregion
 
